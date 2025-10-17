@@ -1,71 +1,67 @@
 package com.example.mytraveldiary;
 
-import android.os.Bundle;
-import android.view.*;
+import android.net.Uri;
+import android.os.Bundle; // ✅ added
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
-    private final List<AppData.Trip> trips;
-    private final Fragment parentFragment;
+public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
 
-    public TripAdapter(List<AppData.Trip> trips, Fragment parentFragment) {
+    private final List<AppData.Trip> trips;
+    private final FragmentActivity activity;
+
+    public TripAdapter(List<AppData.Trip> trips, FragmentActivity activity) {
         this.trips = trips;
-        this.parentFragment = parentFragment;
+        this.activity = activity;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
+    public TripViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_trip, parent, false);
-        return new ViewHolder(v);
+        return new TripViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TripViewHolder holder, int position) {
         AppData.Trip trip = trips.get(position);
-        holder.title.setText(trip.getDestination());
-        holder.dates.setText(trip.getDateRange());
 
-        // Load image using Glide (with placeholder and error fallback)
-        if (trip.getImage() != null && !trip.getImage().isEmpty()) {
-            Glide.with(holder.image.getContext())
-                    .load(trip.getImage())
-                    .placeholder(R.drawable.sample_trip)
-                    .error(R.drawable.sample_trip)
+        holder.tripTitle.setText(trip.getDestination());
+        holder.tripDates.setText(trip.getDateRange());
+
+        String imageUrl = trip.getImage();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(imageUrl.startsWith("content://") ? Uri.parse(imageUrl) : imageUrl)
                     .centerCrop()
-                    .into(holder.image);
+                    .placeholder(R.drawable.sample_trip)
+                    .into(holder.tripImage);
         } else {
-            holder.image.setImageResource(R.drawable.sample_trip);
+            holder.tripImage.setImageResource(R.drawable.sample_trip);
         }
 
-        // Handle click to open TripDetailFragment
+        // ✅ Click handler: open TripDetailFragment
         holder.itemView.setOnClickListener(v -> {
+            TripDetailFragment fragment = new TripDetailFragment();
             Bundle args = new Bundle();
             args.putString("tripId", trip.getId());
+            fragment.setArguments(args);
 
-            TripDetailFragment detailFragment = new TripDetailFragment();
-            detailFragment.setArguments(args);
-
-            parentFragment.requireActivity()
-                    .getSupportFragmentManager()
+            activity.getSupportFragmentManager()
                     .beginTransaction()
-                    .setCustomAnimations(
-                            android.R.anim.fade_in,
-                            android.R.anim.fade_out,
-                            android.R.anim.fade_in,
-                            android.R.anim.fade_out
-                    )
-                    .replace(R.id.container, detailFragment)
+                    .replace(R.id.container, fragment) // ✅ fix container ID
                     .addToBackStack(null)
                     .commit();
         });
@@ -73,18 +69,18 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return trips != null ? trips.size() : 0;
+        return trips.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView title, dates;
+    public static class TripViewHolder extends RecyclerView.ViewHolder {
+        ImageView tripImage;
+        TextView tripTitle, tripDates;
 
-        ViewHolder(@NonNull View v) {
-            super(v);
-            image = v.findViewById(R.id.tripImage);
-            title = v.findViewById(R.id.tripTitle);
-            dates = v.findViewById(R.id.tripDates);
+        public TripViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tripImage = itemView.findViewById(R.id.tripImage);
+            tripTitle = itemView.findViewById(R.id.tripTitle);
+            tripDates = itemView.findViewById(R.id.tripDates);
         }
     }
 }
