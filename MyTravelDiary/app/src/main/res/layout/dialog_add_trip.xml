@@ -37,11 +37,23 @@
             android:layout_height="wrap_content"
             android:inputType="date" />
 
-        <EditText
-            android:id="@+id/inputImageUrl"
-            android:hint="Image URL (optional)"
+        <!-- ✅ Choose image button -->
+        <Button
+            android:id="@+id/btnChooseImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose image from gallery"
+            android:layout_marginTop="8dp" />
+
+        <!-- ✅ Preview -->
+        <ImageView
+            android:id="@+id/imagePreview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:background="#E0E0E0"
+            android:contentDescription="Image preview" />
 
         <LinearLayout
             android:layout_width="match_parent"

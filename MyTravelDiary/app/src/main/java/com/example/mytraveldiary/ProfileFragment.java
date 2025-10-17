@@ -1,6 +1,7 @@
 package com.example.mytraveldiary;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class ProfileFragment extends Fragment {
         setEditingEnabled(false);
 
         btnEdit.setOnClickListener(v -> toggleEditMode());
-        btnLogout.setOnClickListener(v -> appData.logout(requireContext()));
+        btnLogout.setOnClickListener(v -> logoutAndReturnToLogin());
         btnDelete.setOnClickListener(v -> confirmDelete());
 
         return root;
@@ -88,13 +89,31 @@ public class ProfileFragment extends Fragment {
         editFavorites.setEnabled(enabled);
     }
 
+    // ✅ Log out user and go back to LoginActivity
+    private void logoutAndReturnToLogin() {
+        appData.logout(requireContext());
+        Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+        // Go to LoginActivity
+        Intent intent = new Intent(requireActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        requireActivity().finish(); // close MainActivity
+    }
+
+    // ✅ Confirm delete, then go back to LoginActivity
     private void confirmDelete() {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Delete Account")
                 .setMessage("Are you sure you want to delete this account? This cannot be undone.")
                 .setPositiveButton("Delete", (dialog, which) -> {
                     appData.deleteAccount(requireContext());
-                    loadProfile();
+                    Toast.makeText(requireContext(), "Account deleted", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(requireActivity(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    requireActivity().finish();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();

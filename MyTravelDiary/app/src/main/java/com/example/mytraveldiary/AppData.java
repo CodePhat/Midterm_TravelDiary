@@ -169,7 +169,7 @@ public class AppData {
                 "Tokyo, Japan",
                 "2025-03-10",
                 "2025-03-18",
-                "https://images.unsplash.com/photo-1505069611822-69b4d1a3d07e"
+                "android.resource://com.example.mytraveldiary/drawable/tokyo_japan"
         );
         japan.addExpense(new Expense(UUID.randomUUID().toString(),
                 "Sushi dinner", 45.5, ExpenseCategory.Food, new Date()));
@@ -185,7 +185,7 @@ public class AppData {
                 "Rome, Italy",
                 "2025-04-02",
                 "2025-04-09",
-                "https://images.unsplash.com/photo-1563393351-c75aa2d8e9a5"
+                "android.resource://com.example.mytraveldiary/drawable/rome_italy"
         );
         italy.addExpense(new Expense(UUID.randomUUID().toString(),
                 "Pizza lunch", 25.0, ExpenseCategory.Food, new Date()));
@@ -208,6 +208,19 @@ public class AppData {
         private final String endDate;
         private final String image;
         private final List<Expense> expenses = new ArrayList<>();
+        // --- New fields ---
+        private final List<String> itinerary = new ArrayList<>();
+        private final List<String> diaryEntries = new ArrayList<>();
+        private final List<String> photos = new ArrayList<>();
+
+        public List<String> getItinerary() { return itinerary; }
+        public List<String> getDiaryEntries() { return diaryEntries; }
+        public List<String> getPhotos() { return photos; }
+
+        public void addItinerary(String plan) { itinerary.add(plan); }
+        public void addDiaryEntry(String entry) { diaryEntries.add(entry); }
+        public void addPhoto(String uri) { photos.add(uri); }
+
 
         public Trip(String id, String destination, String startDate, String endDate, String image) {
             this.id = id;
