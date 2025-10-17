@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
-
     private final List<AppData.Trip> trips;
     private final Fragment parentFragment;
 
