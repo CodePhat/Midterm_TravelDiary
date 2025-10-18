@@ -25,7 +25,7 @@ public class AddExpenseDialog extends Dialog {
             String d = desc.getText().toString().trim();
             String amountStr = amount.getText().toString().trim();
             if (d.isEmpty() || amountStr.isEmpty()) {
-                Toast.makeText(ctx, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "Please fill All Fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -33,7 +33,7 @@ public class AddExpenseDialog extends Dialog {
             try {
                 a = Double.parseDouble(amountStr);
             } catch (NumberFormatException e) {
-                Toast.makeText(ctx, "Invalid amount", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "Invalid Amount", Toast.LENGTH_SHORT).show();
                 return;
             }
 
