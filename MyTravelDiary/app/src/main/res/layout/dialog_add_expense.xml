@@ -56,14 +56,16 @@
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel" />
+                android:text="Cancel"
+                android:backgroundTint="@color/orange"/>
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save"
-                android:layout_marginStart="16dp" />
+                android:layout_marginStart="16dp"
+                android:backgroundTint="@color/bottom_nav_dark_green"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

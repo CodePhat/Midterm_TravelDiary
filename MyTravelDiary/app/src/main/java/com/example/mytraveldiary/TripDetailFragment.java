@@ -2,6 +2,7 @@ package com.example.mytraveldiary;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable; // <-- THÊM IMPORT NÀY
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.*;
@@ -9,6 +10,8 @@ import android.widget.*;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat; // <-- THÊM IMPORT NÀY
+import androidx.core.graphics.drawable.DrawableCompat; // <-- THÊM IMPORT NÀY
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -24,13 +27,12 @@ public class TripDetailFragment extends Fragment {
     private AppData.Trip trip;
     private AppData appData;
     private LinearLayout contentLayout;
-    private String activeTab = "expenses";
+    private String activeTab = "expenses"; // Mặc định là expenses
     private PieChart pieChart;
     private TextView totalText;
     private Button btnAddExpense;
     private LinearLayout expensesContainer;
-
-    // --- For Photos ---
+    private Button tabItinerary, tabExpenses, tabDiary, tabPhotos; // <-- THÊM CÁC BIẾN NÀY
     private LinearLayout photoContainer;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
 
@@ -63,19 +65,21 @@ public class TripDetailFragment extends Fragment {
         }
 
         contentLayout = root.findViewById(R.id.contentLayout);
-        setupTabs(root);
+
+        tabItinerary = root.findViewById(R.id.tabItinerary);
+        tabExpenses = root.findViewById(R.id.tabExpenses);
+        tabDiary = root.findViewById(R.id.tabDiary);
+        tabPhotos = root.findViewById(R.id.tabPhotos);
+
+
+        setupTabs();
         setupImagePicker();
         refreshTab();
 
         return root;
     }
 
-    private void setupTabs(View root) {
-        Button tabItinerary = root.findViewById(R.id.tabItinerary);
-        Button tabExpenses = root.findViewById(R.id.tabExpenses);
-        Button tabDiary = root.findViewById(R.id.tabDiary);
-        Button tabPhotos = root.findViewById(R.id.tabPhotos);
-
+    private void setupTabs() {
         tabItinerary.setOnClickListener(v -> setActiveTab("itinerary"));
         tabExpenses.setOnClickListener(v -> setActiveTab("expenses"));
         tabDiary.setOnClickListener(v -> setActiveTab("diary"));
@@ -88,7 +92,26 @@ public class TripDetailFragment extends Fragment {
     }
 
     private void refreshTab() {
-        contentLayout.removeAllViews();
+        resetTabStyles(tabItinerary);
+        resetTabStyles(tabExpenses);
+        resetTabStyles(tabDiary);
+        resetTabStyles(tabPhotos);
+
+        switch (activeTab) {
+            case "itinerary":
+                setTabSelected(tabItinerary);
+                break;
+            case "expenses":
+                setTabSelected(tabExpenses);
+                break;
+            case "diary":
+                setTabSelected(tabDiary);
+                break;
+            case "photos":
+                setTabSelected(tabPhotos);
+                break;
+        }
+        contentLayout.removeAllViews(); // Dòng này giữ nguyên
         switch (activeTab) {
             case "expenses":
                 showExpenses();
@@ -104,10 +127,6 @@ public class TripDetailFragment extends Fragment {
                 break;
         }
     }
-
-    // ================================
-    //  EXPENSES TAB
-    // ================================
     private void showExpenses() {
         View expensesView = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_expenses_section, contentLayout, false);
@@ -184,9 +203,6 @@ public class TripDetailFragment extends Fragment {
         pieChart.invalidate();
     }
 
-    // ================================
-    //  ITINERARY TAB
-    // ================================
     private void showItinerary() {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_itinerary_section, contentLayout, false);
@@ -228,10 +244,6 @@ public class TripDetailFragment extends Fragment {
         }
     }
 
-
-    // ================================
-    //  DIARY TAB
-    // ================================
     private void showDiary() {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_diary_section, contentLayout, false);
@@ -273,10 +285,6 @@ public class TripDetailFragment extends Fragment {
         }
     }
 
-
-    // ================================
-    //  PHOTOS TAB
-    // ================================
     private void setupImagePicker() {
         imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -323,10 +331,37 @@ public class TripDetailFragment extends Fragment {
         }
     }
 
-
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         imagePickerLauncher.launch(intent);
     }
+
+    private void resetTabStyles(Button button) {
+        if (getContext() == null || button == null) return;
+
+        button.setBackgroundResource(R.drawable.tab_background_selector);
+        button.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.tab_text_color_selector));
+
+        // Lấy icon (vị trí [1] là 'top')
+        Drawable[] icons = button.getCompoundDrawables();
+        if (icons[1] != null) {
+            Drawable icon = DrawableCompat.wrap(icons[1]); // Bọc icon
+            DrawableCompat.setTintList(icon, ContextCompat.getColorStateList(getContext(), R.color.tab_text_color_selector)); // Set màu
+        }
+    }
+
+    private void setTabSelected(Button button) {
+        if (getContext() == null || button == null) return;
+
+        button.setBackgroundResource(R.drawable.tab_selected_background); // Nền xanh đậm
+        button.setTextColor(ContextCompat.getColor(getContext(), R.color.white)); // Chữ trắng
+
+        Drawable[] icons = button.getCompoundDrawables();
+        if (icons[1] != null) {
+            Drawable icon = DrawableCompat.wrap(icons[1]); // Bọc icon
+            DrawableCompat.setTintList(icon, ContextCompat.getColorStateList(getContext(), R.color.white)); // Set màu
+        }
+    }
+
 }
