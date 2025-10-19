@@ -15,7 +15,8 @@
             android:text="Add a New Trip"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/inputDestination"
@@ -43,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose image from gallery"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#16A085"/>
 
         <!-- ✅ Preview -->
         <ImageView
@@ -67,13 +69,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancel"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/profile_btn_red"/>
 
             <Button
                 android:id="@+id/btnAddTrip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Trip" />
+                android:text="Add Trip"
+                android:backgroundTint="#16A085"/>
         </LinearLayout>
 
     </LinearLayout>

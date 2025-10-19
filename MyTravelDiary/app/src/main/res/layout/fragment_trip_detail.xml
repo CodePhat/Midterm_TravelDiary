@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".TripDetailFragment">
 
-    <!-- === Header section (Trip image + title + date) === -->
     <ImageView
         android:id="@+id/tripImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:background="#EEE" />
+        android:background="#EEE"
+        android:contentDescription="Trip Image" />
 
     <TextView
         android:id="@+id/tripTitle"
@@ -24,7 +24,9 @@
         android:textColor="@android:color/black"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
 
     <TextView
         android:id="@+id/tripDates"
@@ -33,106 +35,79 @@
         android:text="Dates"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
 
-    <!-- === Tabs === -->
     <LinearLayout
-        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tabItinerary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Itinerary" />
+            android:text="Itinerary"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:drawableTop="@drawable/ic_tab_itinerary"
+            android:background="@drawable/tab_background_selector"
+            android:textColor="@color/tab_text_color_selector"
+            android:drawableTint="@color/tab_text_color_selector"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tabExpenses"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Expenses" />
+            android:text="Expenses"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:drawableTop="@drawable/ic_tab_expenses"
+            android:background="@drawable/tab_background_selector"
+            android:textColor="@color/tab_text_color_selector"
+            android:drawableTint="@color/tab_text_color_selector"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tabDiary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Diary" />
+            android:text="Diary"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:drawableTop="@drawable/ic_tab_diary"
+            android:background="@drawable/tab_background_selector"
+            android:textColor="@color/tab_text_color_selector"
+            android:drawableTint="@color/tab_text_color_selector"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tabPhotos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Photos" />
+            android:text="Photos"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:drawableTop="@drawable/ic_tab_photos"
+            android:background="@drawable/tab_background_selector"
+            android:textColor="@color/tab_text_color_selector"
+            android:drawableTint="@color/tab_text_color_selector"/>
     </LinearLayout>
 
-    <!-- === Content layout === -->
     <LinearLayout
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="8dp">
+        android:padding="16dp" />
 
-        <!-- === Expenses Section (when Expenses tab is active) === -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <!-- LEFT: Pie Chart -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="top|center_horizontal">
-
-                <TextView
-                    android:id="@+id/totalExpenses"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total: $0.00"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:paddingBottom="8dp" />
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/expenseChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginBottom="8dp" />
-
-                <Button
-                    android:id="@+id/btnAddExpense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="+ Add Expense" />
-            </LinearLayout>
-
-            <!-- RIGHT: Scrollable Expense List -->
-            <ScrollView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fillViewport="true"
-                android:paddingStart="8dp">
-
-                <LinearLayout
-                    android:id="@+id/expenseList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

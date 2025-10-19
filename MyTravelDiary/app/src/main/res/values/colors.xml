@@ -13,4 +13,23 @@
     <color name="yellow">#FFEB3B</color>
     <color name="gray">#9E9E9E</color>
     <color name="red">#F44336</color>
+    <color name="profile_bg_blue">#EBF5FB</color>
+    <color name="profile_btn_orange">#F39C12</color>
+    <color name="profile_btn_red">#E74C3C</color>
+    <color name="profile_edittext_border">#D5D8DC</color>
+    <color name="profile_text_label">#566573</color>
+    <color name="profile_text_value">#212F3D</color>
+    <color name="bottom_nav_dark_green">#16A085</color>
+    <color name="bottom_nav_light_green">#A3E4D7</color>
+    <color name="bottom_nav_default_color">#566573</color>
+    <color name="bottom_nav_selected_bg">#16A085</color>
+    <color name="bottom_nav_text_selected">#FFFFFF</color>
+    <color name="bottom_nav_text_unselected">#566573</color>
+    <color name="bottom_nav_bg_unselected">#F4F6F7</color>
+    <color name="tab_dark_green">#16A085</color>
+    <color name="tab_light_green">#A3E4D7</color>
+    <color name="tab_default_text">#566573</color>
+    <color name="card_bg_light_gray">#F4F6F7</color>
+    <color name="gray_text">#566573</color>
+
 </resources>

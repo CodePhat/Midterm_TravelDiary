@@ -31,12 +31,14 @@
         android:text="Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/bottom_nav_dark_green"/>
 
     <Button
         android:id="@+id/toggleButton"
         android:text="Don't have an account? Sign Up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/orange"/>
 </LinearLayout>

@@ -50,11 +50,11 @@ public class TripsFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.tripsRecycler);
         emptyState = root.findViewById(R.id.emptyStateText);
-        FloatingActionButton fab = root.findViewById(R.id.fabAddTrip);
+        com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton fab = root.findViewById(R.id.fab_add_trip);
 
         appData = AppData.getInstance();
 
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(),2));
         List<AppData.Trip> tripList = appData.getTrips();
         adapter = new TripAdapter(tripList, requireActivity());
         recyclerView.setAdapter(adapter);

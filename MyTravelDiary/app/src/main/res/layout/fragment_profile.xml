@@ -1,111 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/profile_bg_blue"
+    android:fillViewport="true"
+    tools:context=".YourProfileActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="16dp">
 
-        <!-- Profile Header -->
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="16dp">
-
-            <View
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:background="@drawable/sample_trip"
-                android:layout_marginEnd="16dp" />
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1">
+                android:padding="24dp">
+
+                <ImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/img"
+                    android:contentDescription="Profile Picture"
+                    android:src="@drawable/img" />
 
                 <TextView
                     android:id="@+id/textName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
                     android:text="Traveler Name"
+                    android:textColor="@color/profile_text_value"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp"
                     android:text="user@email.com"
-                    android:textSize="16sp"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/profile_text_label"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Name"
+                    android:textColor="@color/profile_text_label"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/edittext_profile_background"
+                    android:enabled="false"
+                    android:hint="Full Name"
+                    android:textColor="@color/profile_text_value"
+                    android:textColorHint="@color/profile_edittext_border"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email Address"
+                    android:textColor="@color/profile_text_label"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/edittext_profile_background"
+                    android:enabled="false"
+                    android:hint="Email Address"
+                    android:textColor="@color/profile_text_value"
+                    android:textColorHint="@color/profile_edittext_border"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Favorite Destinations"
+                    android:textColor="@color/profile_text_label"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editFavorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/edittext_profile_background"
+                    android:enabled="false"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"
+                    android:hint="Favorite Destinations"
+                    android:textColor="@color/profile_text_value"
+                    android:textColorHint="@color/profile_edittext_border"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/profile_btn_orange"
+                        android:text="Edit Profile"
+                        android:textColor="@android:color/white"
+                        app:cornerRadius="8dp" />
+
+                    <Button
+                        android:id="@+id/btnLogout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/red"
+                        android:text="Log Out"
+                        android:textColor="@android:color/white"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/profile_btn_red"
+                    android:text="Delete Account"
+                    android:textColor="@android:color/white"
+                    app:cornerRadius="8dp" />
+
             </LinearLayout>
-        </LinearLayout>
 
-        <!-- Editable Fields -->
-        <EditText
-            android:id="@+id/editName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:enabled="false" />
+        </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/editEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email Address"
-            android:enabled="false" />
-
-        <EditText
-            android:id="@+id/editFavorites"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Favorite Destinations"
-            android:enabled="false"
-            android:inputType="textMultiLine"
-            android:minLines="3" />
-
-        <!-- Buttons Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="24dp">
-
-            <Button
-                android:id="@+id/btnEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edit Profile"
-                android:backgroundTint="@color/teal_700"
-                android:textColor="@android:color/white"
-                android:layout_marginEnd="8dp" />
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Log Out"
-                android:backgroundTint="@color/gray"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete Account"
-            android:backgroundTint="@color/red"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="8dp" />
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
