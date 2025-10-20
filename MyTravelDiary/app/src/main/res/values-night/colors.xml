@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keep base colors the same -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="purple">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="orange">#FFA500</color>
+    <color name="blue">#2196F3</color>
+    <color name="pink">#E91E63</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="red">#F44336</color>
+
+    <!-- Dark mode specific colors -->
+    <color name="profile_bg_blue">#1E2A38</color>
+    <color name="profile_btn_orange">#F39C12</color>
+    <color name="profile_btn_red">#E74C3C</color>
+    <color name="profile_edittext_border">#3E4C5E</color>
+    <color name="profile_text_label">#B0BEC5</color>
+    <color name="profile_text_value">#E8EAF6</color>
+    <color name="bottom_nav_dark_green">#16A085</color>
+    <color name="bottom_nav_light_green">#1E3A36</color>
+    <color name="bottom_nav_default_color">#B0BEC5</color>
+    <color name="bottom_nav_selected_bg">#16A085</color>
+    <color name="bottom_nav_text_selected">#FFFFFF</color>
+    <color name="bottom_nav_text_unselected">#B0BEC5</color>
+    <color name="bottom_nav_bg_unselected">#2C3E50</color>
+    <color name="tab_dark_green">#16A085</color>
+    <color name="tab_light_green">#1E3A36</color>
+    <color name="tab_default_text">#B0BEC5</color>
+    <color name="card_bg_light_gray">#2C3E50</color>
+    <color name="gray_text">#B0BEC5</color>
+    <color name="primary_cyan">#16A085</color>
+    <color name="light_green">#1E3A36</color>
+</resources>
