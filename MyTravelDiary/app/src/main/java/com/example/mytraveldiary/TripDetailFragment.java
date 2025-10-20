@@ -2,7 +2,7 @@ package com.example.mytraveldiary;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable; // <-- THÊM IMPORT NÀY
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.*;
@@ -10,8 +10,8 @@ import android.widget.*;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat; // <-- THÊM IMPORT NÀY
-import androidx.core.graphics.drawable.DrawableCompat; // <-- THÊM IMPORT NÀY
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -27,12 +27,13 @@ public class TripDetailFragment extends Fragment {
     private AppData.Trip trip;
     private AppData appData;
     private LinearLayout contentLayout;
-    private String activeTab = "expenses"; // Mặc định là expenses
+    private String activeTab = "expenses"; // Default tab is expenses
+    private String previousTab = "expenses";
     private PieChart pieChart;
     private TextView totalText;
     private Button btnAddExpense;
     private LinearLayout expensesContainer;
-    private Button tabItinerary, tabExpenses, tabDiary, tabPhotos; // <-- THÊM CÁC BIẾN NÀY
+    private Button tabItinerary, tabExpenses, tabDiary, tabPhotos;
     private LinearLayout photoContainer;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
 
@@ -87,8 +88,20 @@ public class TripDetailFragment extends Fragment {
     }
 
     private void setActiveTab(String tab) {
+        if (activeTab.equals(tab)) return; // Don't switch if same tab
+        previousTab = activeTab;
         activeTab = tab;
         refreshTab();
+    }
+
+    private int getTabIndex(String tab) {
+        switch (tab) {
+            case "itinerary": return 0;
+            case "expenses": return 1;
+            case "diary": return 2;
+            case "photos": return 3;
+            default: return 1;
+        }
     }
 
     private void refreshTab() {
@@ -111,23 +124,58 @@ public class TripDetailFragment extends Fragment {
                 setTabSelected(tabPhotos);
                 break;
         }
-        contentLayout.removeAllViews(); // Dòng này giữ nguyên
-        switch (activeTab) {
-            case "expenses":
-                showExpenses();
-                break;
-            case "itinerary":
-                showItinerary();
-                break;
-            case "diary":
-                showDiary();
-                break;
-            case "photos":
-                showPhotos();
-                break;
+
+        // Determine slide direction
+        boolean slideLeft = getTabIndex(activeTab) > getTabIndex(previousTab);
+
+        // Apply exit animation to current view
+        if (contentLayout.getChildCount() > 0) {
+            View currentView = contentLayout.getChildAt(0);
+            currentView.animate()
+                .translationX(slideLeft ? -contentLayout.getWidth() : contentLayout.getWidth())
+                .alpha(0f)
+                .setDuration(250)
+                .withEndAction(() -> {
+                    contentLayout.removeAllViews();
+                    showNewTabContent(slideLeft);
+                })
+                .start();
+        } else {
+            showNewTabContent(slideLeft);
         }
     }
-    private void showExpenses() {
+
+    private void showNewTabContent(boolean slideLeft) {
+        View newView = null;
+        switch (activeTab) {
+            case "expenses":
+                newView = showExpenses();
+                break;
+            case "itinerary":
+                newView = showItinerary();
+                break;
+            case "diary":
+                newView = showDiary();
+                break;
+            case "photos":
+                newView = showPhotos();
+                break;
+        }
+
+        if (newView != null) {
+            // Set initial position for slide in animation
+            newView.setTranslationX(slideLeft ? contentLayout.getWidth() : -contentLayout.getWidth());
+            newView.setAlpha(0f);
+
+            // Animate in
+            newView.animate()
+                .translationX(0)
+                .alpha(1f)
+                .setDuration(250)
+                .start();
+        }
+    }
+    private View showExpenses() {
         View expensesView = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_expenses_section, contentLayout, false);
         contentLayout.addView(expensesView);
@@ -142,6 +190,7 @@ public class TripDetailFragment extends Fragment {
         );
 
         refreshExpenses();
+        return expensesView;
     }
 
     private void refreshExpenses() {
@@ -203,48 +252,196 @@ public class TripDetailFragment extends Fragment {
         pieChart.invalidate();
     }
 
-    private void showItinerary() {
+    private View showItinerary() {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_itinerary_section, contentLayout, false);
         contentLayout.addView(view);
 
         LinearLayout list = view.findViewById(R.id.itineraryList);
-        Button btnAdd = view.findViewById(R.id.btnAddDay);
+        Button btnCreateItinerary = view.findViewById(R.id.btnCreateItinerary);
 
-        refreshItineraryList(list); // ✅ initial load
+        refreshItineraryList(list);
 
-        btnAdd.setOnClickListener(v -> {
-            EditText input = new EditText(getContext());
-            input.setHint("Enter plan for the day");
+        btnCreateItinerary.setOnClickListener(v -> showCreateItineraryDialog(list));
+        return view;
+    }
 
-            new android.app.AlertDialog.Builder(getContext())
-                    .setTitle("Add Itinerary Day")
-                    .setView(input)
-                    .setPositiveButton("Add", (d, w) -> {
-                        String plan = input.getText().toString().trim();
-                        if (!plan.isEmpty()) {
-                            trip.addItinerary(plan);
-                            refreshItineraryList(list); // ✅ instant refresh
-                        }
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .show();
+    private void showCreateItineraryDialog(LinearLayout list) {
+        // Calculate trip duration
+        String start = trip.getStartDate();
+        String end = trip.getEndDate();
+
+        // Simple day calculation (you could make this more sophisticated)
+        int defaultDays = 7; // Default to 7 days if calculation fails
+
+        EditText inputDays = new EditText(getContext());
+        inputDays.setHint("Trip Duration (days)");
+        inputDays.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        inputDays.setText(String.valueOf(defaultDays));
+
+        new android.app.AlertDialog.Builder(getContext())
+            .setTitle("Create Itinerary Plan")
+            .setMessage("Destination: " + trip.getDestination() + "\nHow many days will this trip last?")
+            .setView(inputDays)
+            .setPositiveButton("Create", (d, w) -> {
+                String daysStr = inputDays.getText().toString().trim();
+                if (!daysStr.isEmpty()) {
+                    int days = Integer.parseInt(daysStr);
+                    if (days > 0 && days <= 365) {
+                        trip.generateItineraryTemplate(days);
+                        appData.triggerSave();
+                        refreshItineraryList(list);
+                        Toast.makeText(getContext(), "Created " + days + " day itinerary!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Please enter between 1-365 days", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            })
+            .setNegativeButton("Cancel", null)
+            .show();
+    }
+
+    private void showAddActivityDialog(int dayNumber, LinearLayout dayActivitiesList) {
+        LinearLayout dialogLayout = new LinearLayout(getContext());
+        dialogLayout.setOrientation(LinearLayout.VERTICAL);
+        dialogLayout.setPadding(40, 20, 40, 20);
+
+        // Time Picker Button
+        Button btnSelectTime = new Button(getContext());
+        btnSelectTime.setText("Select Time");
+        btnSelectTime.setAllCaps(false);
+        btnSelectTime.setBackgroundColor(0xFFE0E0E0);
+        btnSelectTime.setTextColor(0xFF000000);
+        dialogLayout.addView(btnSelectTime);
+
+        // Activity description input
+        EditText inputActivity = new EditText(getContext());
+        inputActivity.setHint("Activity description");
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 20, 0, 0);
+        inputActivity.setLayoutParams(params);
+        dialogLayout.addView(inputActivity);
+
+        // Store selected time
+        final String[] selectedTime = {null};
+
+        // Time picker click listener
+        btnSelectTime.setOnClickListener(v -> {
+            android.app.TimePickerDialog timePickerDialog = new android.app.TimePickerDialog(
+                getContext(),
+                (view, hourOfDay, minute) -> {
+                    // Format time as "HH:MM AM/PM"
+                    String amPm = hourOfDay >= 12 ? "PM" : "AM";
+                    int hour12 = hourOfDay % 12;
+                    if (hour12 == 0) hour12 = 12;
+
+                    String timeStr = String.format("%d:%02d %s", hour12, minute, amPm);
+                    selectedTime[0] = timeStr;
+                    btnSelectTime.setText(timeStr);
+                    btnSelectTime.setTextColor(0xFF16A085); // Green color to show it's selected
+                },
+                9, // Default hour (9 AM)
+                0, // Default minute
+                false // Use 12-hour format
+            );
+            timePickerDialog.show();
         });
+
+        new android.app.AlertDialog.Builder(getContext())
+            .setTitle("Add Activity to Day " + dayNumber)
+            .setView(dialogLayout)
+            .setPositiveButton("Add", (d, w) -> {
+                String time = selectedTime[0] != null ? selectedTime[0] : "All day";
+                String activity = inputActivity.getText().toString().trim();
+
+                if (!activity.isEmpty()) {
+                    trip.addActivityToDay(dayNumber, time, activity);
+                    appData.triggerSave();
+                    refreshDayActivities(dayNumber, dayActivitiesList);
+                } else {
+                    Toast.makeText(getContext(), "Please enter an activity description", Toast.LENGTH_SHORT).show();
+                }
+            })
+            .setNegativeButton("Cancel", null)
+            .show();
     }
 
     private void refreshItineraryList(LinearLayout list) {
         list.removeAllViews();
-        List<String> itinerary = trip.getItinerary();
+        List<AppData.ItineraryDay> days = trip.getItineraryDays();
 
-        for (int i = 0; i < itinerary.size(); i++) {
-            TextView tv = new TextView(getContext());
-            tv.setText("Day " + (i + 1) + ": " + itinerary.get(i));
-            tv.setPadding(20, 15, 20, 15);
-            list.addView(tv);
+        if (days.isEmpty()) {
+            TextView emptyMsg = new TextView(getContext());
+            emptyMsg.setText("Click 'Create Itinerary' to plan your trip day by day");
+            emptyMsg.setPadding(20, 30, 20, 30);
+            emptyMsg.setTextColor(0xFF888888);
+            emptyMsg.setGravity(android.view.Gravity.CENTER);
+            list.addView(emptyMsg);
+            return;
+        }
+
+        for (AppData.ItineraryDay day : days) {
+            View dayCard = LayoutInflater.from(getContext())
+                .inflate(R.layout.item_itinerary_day, list, false);
+
+            TextView dayNumber = dayCard.findViewById(R.id.dayNumber);
+            dayNumber.setText(String.format("Day %02d", day.getDayNumber()));
+
+            LinearLayout activitiesList = dayCard.findViewById(R.id.activitiesList);
+            TextView emptyText = dayCard.findViewById(R.id.emptyDayText);
+            android.widget.Button btnAddActivity = dayCard.findViewById(R.id.btnAddActivity);
+
+            // Refresh activities for this day
+            refreshDayActivities(day.getDayNumber(), activitiesList);
+
+            // Show/hide empty state
+            if (day.hasActivities()) {
+                emptyText.setVisibility(View.GONE);
+            } else {
+                emptyText.setVisibility(View.VISIBLE);
+            }
+
+            // Add activity button
+            btnAddActivity.setOnClickListener(v -> showAddActivityDialog(day.getDayNumber(), activitiesList));
+
+            list.addView(dayCard);
         }
     }
 
-    private void showDiary() {
+    private void refreshDayActivities(int dayNumber, LinearLayout activitiesList) {
+        activitiesList.removeAllViews();
+
+        AppData.ItineraryDay day = trip.getDay(dayNumber);
+        if (day == null) return;
+
+        List<AppData.DayActivity> activities = day.getActivities();
+        for (AppData.DayActivity activity : activities) {
+            View activityView = LayoutInflater.from(getContext())
+                .inflate(R.layout.item_day_activity, activitiesList, false);
+
+            TextView timeView = activityView.findViewById(R.id.activityTime);
+            TextView descView = activityView.findViewById(R.id.activityDescription);
+
+            timeView.setText(activity.getTime());
+            descView.setText(activity.getActivity());
+
+            activitiesList.addView(activityView);
+        }
+
+        // Update parent visibility
+        View parent = (View) activitiesList.getParent();
+        if (parent != null) {
+            TextView emptyText = parent.findViewById(R.id.emptyDayText);
+            if (emptyText != null) {
+                emptyText.setVisibility(activities.isEmpty() ? View.VISIBLE : View.GONE);
+            }
+        }
+    }
+
+    private View showDiary() {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_diary_section, contentLayout, false);
         contentLayout.addView(view);
@@ -265,12 +462,14 @@ public class TripDetailFragment extends Fragment {
                         String text = input.getText().toString().trim();
                         if (!text.isEmpty()) {
                             trip.addDiaryEntry(text);
-                            refreshDiaryList(diaryList); // ✅ instant refresh
+                            appData.triggerSave();
+                            refreshDiaryList(diaryList);
                         }
                     })
                     .setNegativeButton("Cancel", null)
                     .show();
         });
+        return view;
     }
 
     private void refreshDiaryList(LinearLayout diaryList) {
@@ -293,14 +492,15 @@ public class TripDetailFragment extends Fragment {
                         Uri uri = result.getData().getData();
                         if (uri != null) {
                             trip.addPhoto(uri.toString());
-                            if (photoContainer != null) refreshPhotoList(); // ✅ instant update
+                            appData.triggerSave();
+                            if (photoContainer != null) refreshPhotoList();
                         }
                     }
                 }
         );
     }
 
-    private void showPhotos() {
+    private View showPhotos() {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.layout_photos_section, contentLayout, false);
         contentLayout.addView(view);
@@ -311,6 +511,7 @@ public class TripDetailFragment extends Fragment {
         refreshPhotoList();
 
         btnAddPhoto.setOnClickListener(v -> openGallery());
+        return view;
     }
 
     private void refreshPhotoList() {
@@ -343,24 +544,24 @@ public class TripDetailFragment extends Fragment {
         button.setBackgroundResource(R.drawable.tab_background_selector);
         button.setTextColor(ContextCompat.getColorStateList(getContext(), R.color.tab_text_color_selector));
 
-        // Lấy icon (vị trí [1] là 'top')
+        // Get drawable icon (position [1] is 'top')
         Drawable[] icons = button.getCompoundDrawables();
         if (icons[1] != null) {
-            Drawable icon = DrawableCompat.wrap(icons[1]); // Bọc icon
-            DrawableCompat.setTintList(icon, ContextCompat.getColorStateList(getContext(), R.color.tab_text_color_selector)); // Set màu
+            Drawable icon = DrawableCompat.wrap(icons[1]);
+            DrawableCompat.setTintList(icon, ContextCompat.getColorStateList(getContext(), R.color.tab_text_color_selector));
         }
     }
 
     private void setTabSelected(Button button) {
         if (getContext() == null || button == null) return;
 
-        button.setBackgroundResource(R.drawable.tab_selected_background); // Nền xanh đậm
-        button.setTextColor(ContextCompat.getColor(getContext(), R.color.white)); // Chữ trắng
+        button.setBackgroundResource(R.drawable.tab_selected_background);
+        button.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
 
         Drawable[] icons = button.getCompoundDrawables();
         if (icons[1] != null) {
-            Drawable icon = DrawableCompat.wrap(icons[1]); // Bọc icon
-            DrawableCompat.setTintList(icon, ContextCompat.getColorStateList(getContext(), R.color.white)); // Set màu
+            Drawable icon = DrawableCompat.wrap(icons[1]);
+            DrawableCompat.setTintList(icon, ContextCompat.getColorStateList(getContext(), R.color.white));
         }
     }
 

@@ -1,46 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card:cardCornerRadius="8dp"
     android:layout_margin="6dp"
     card:cardElevation="4dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/tripImage"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Trip Image" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tripTitle"
+            <ImageView
+                android:id="@+id/tripImage"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="Trip Image" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Destination"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/tripDates"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Jan 1 - Jan 10"
-                android:textSize="12sp"
-                android:textColor="#666666"
-                android:layout_marginTop="4dp"/>
+                <TextView
+                    android:id="@+id/tripTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Destination"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tripDates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jan 1 - Jan 10"
+                    android:textSize="12sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+        <!-- Favorite Icon (Top Right) -->
+        <ImageButton
+            android:id="@+id/btnFavorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/star_big_off"
+            app:tint="@color/orange"
+            android:contentDescription="Favorite"
+            android:padding="8dp"
+            android:scaleType="fitCenter"/>
+
+        <!-- Map Icon (Bottom Right) -->
+        <ImageView
+            android:id="@+id/imgMapIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="8dp"
+            android:background="#AA000000"
+            android:src="@drawable/ic_map_small"
+            android:contentDescription="Has Location"
+            android:padding="6dp"
+            android:visibility="gone"/>
+
+    </FrameLayout>
 </androidx.cardview.widget.CardView>

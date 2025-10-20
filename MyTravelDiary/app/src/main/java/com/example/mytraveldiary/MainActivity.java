@@ -2,51 +2,78 @@ package com.example.mytraveldiary;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.appbar.MaterialToolbar;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout navTrips, navDashboard, navProfile;
-    private ImageView iconTrips, iconDashboard, iconProfile;
-    private TextView textTrips, textDashboard, textProfile;
+    private LinearLayout navTrips, navDashboard, navMap, navProfile;
+    private ImageView iconTrips, iconDashboard, iconMap, iconProfile;
+    private TextView textTrips, textDashboard, textMap, textProfile;
 
-    // THÊM 2 BIẾN NỀN MỚI
-    private View bgTrips, bgDashboard, bgProfile;
+    // Background views for selected state
+    private View bgTrips, bgDashboard, bgMap, bgProfile;
 
     private String currentNavTab = "dashboard";
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize AppData with persistence
+        AppData.getInstance().initialize(this);
+
+        // Apply saved theme preference
+        ThemeManager.applyTheme(this);
+
         setContentView(R.layout.activity_main);
+
+        // Set up toolbar with back button
+        toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
+
         navTrips = findViewById(R.id.nav_trips);
         navDashboard = findViewById(R.id.nav_dashboard);
+        navMap = findViewById(R.id.nav_map);
         navProfile = findViewById(R.id.nav_profile);
 
         iconTrips = findViewById(R.id.icon_trips);
         iconDashboard = findViewById(R.id.icon_dashboard);
+        iconMap = findViewById(R.id.icon_map);
         iconProfile = findViewById(R.id.icon_profile);
 
         textTrips = findViewById(R.id.text_trips);
         textDashboard = findViewById(R.id.text_dashboard);
+        textMap = findViewById(R.id.text_map);
         textProfile = findViewById(R.id.text_profile);
         bgTrips = findViewById(R.id.bg_trips);
         bgDashboard = findViewById(R.id.bg_dashboard);
+        bgMap = findViewById(R.id.bg_map);
         bgProfile = findViewById(R.id.bg_profile);
 
         navTrips.setOnClickListener(v -> setNavigationTab("trips"));
         navDashboard.setOnClickListener(v -> setNavigationTab("dashboard"));
+        navMap.setOnClickListener(v -> setNavigationTab("map"));
         navProfile.setOnClickListener(v -> setNavigationTab("profile"));
 
+        // Listen for back stack changes to show/hide back button
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            updateBackButton();
+        });
+
         refreshNavigationTab();
+        updateBackButton();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -56,15 +83,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNavigationTab(String tab) {
-        // Kiểm tra xem có đang chọn lại tab cũ không
+        // Check if clicking the same tab again
         if (tab.equals(currentNavTab)) {
-            return; // Không làm gì nếu nhấn lại tab cũ
+            return; // Do nothing if same tab is clicked
         }
 
         currentNavTab = tab;
-        refreshNavigationTab(); // Hàm này xử lý đổi màu sắc (đã xong)
+        refreshNavigationTab(); // Handle color changes
 
-        // --- BẮT ĐẦU PHẦN THÊM MỚI (LOGIC CHUYỂN FRAGMENT) ---
+        // Fragment switching logic
         Fragment selectedFragment = null;
 
         switch (tab) {
@@ -74,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
             case "dashboard":
                 selectedFragment = new DashboardFragment();
                 break;
+            case "map":
+                selectedFragment = new TravelMapFragment();
+                break;
             case "profile":
                 selectedFragment = new ProfileFragment();
                 break;
@@ -81,19 +111,26 @@ public class MainActivity extends AppCompatActivity {
 
         if (selectedFragment != null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, selectedFragment) // R.id.container là FrameLayout của bạn
+                    .setCustomAnimations(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left,
+                        R.anim.slide_in_left,
+                        R.anim.slide_out_right
+                    )
+                    .replace(R.id.container, selectedFragment)
                     .commit();
         }
-        // --- KẾT THÚC PHẦN THÊM MỚI ---
     }
 
     private void refreshNavigationTab() {
         resetNavStyle(iconTrips, textTrips);
         resetNavStyle(iconDashboard, textDashboard);
+        resetNavStyle(iconMap, textMap);
         resetNavStyle(iconProfile, textProfile);
 
         bgTrips.setVisibility(View.INVISIBLE);
         bgDashboard.setVisibility(View.INVISIBLE);
+        bgMap.setVisibility(View.INVISIBLE);
         bgProfile.setVisibility(View.INVISIBLE);
 
         switch (currentNavTab) {
@@ -104,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
             case "dashboard":
                 setNavSelectedStyle(iconDashboard, textDashboard);
                 bgDashboard.setVisibility(View.VISIBLE);
+                break;
+            case "map":
+                setNavSelectedStyle(iconMap, textMap);
+                bgMap.setVisibility(View.VISIBLE);
                 break;
             case "profile":
                 setNavSelectedStyle(iconProfile, textProfile);
@@ -120,5 +161,34 @@ public class MainActivity extends AppCompatActivity {
         if (this == null) return;
         icon.setColorFilter(ContextCompat.getColor(this, R.color.bottom_nav_text_selected));
         text.setTextColor(ContextCompat.getColor(this, R.color.bottom_nav_text_selected));
+    }
+
+    private void updateBackButton() {
+        // Show back button if there are fragments in the back stack
+        boolean showBackButton = getSupportFragmentManager().getBackStackEntryCount() > 0;
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(showBackButton);
+            getSupportActionBar().setDisplayShowHomeEnabled(showBackButton);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle back button click
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // If there are fragments in the back stack, pop them
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

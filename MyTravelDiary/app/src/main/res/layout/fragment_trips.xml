@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tripsRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,6 +27,16 @@
                 android:text="My Trips"
                 android:textSize="22sp"
                 android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnToggleView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_view"
+                android:contentDescription="Toggle View Mode"
+                app:tint="@color/bottom_nav_dark_green"
+                android:padding="12dp"/>
 
         </LinearLayout>
 

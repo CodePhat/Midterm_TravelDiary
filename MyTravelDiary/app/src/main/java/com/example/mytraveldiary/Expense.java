@@ -1,8 +1,11 @@
 package com.example.mytraveldiary;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Expense {
+public class Expense implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String id;
     private final String description;
     private final double amount;

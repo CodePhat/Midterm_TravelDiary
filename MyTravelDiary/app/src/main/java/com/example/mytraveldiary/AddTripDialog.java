@@ -23,7 +23,7 @@ public class AddTripDialog extends Dialog {
     private EditText inputDestination, inputStartDate, inputEndDate;
     private ImageView imagePreview;
 
-    // store chosen image URI
+    // Store chosen image URI
     private String selectedImageUri = null;
 
     public AddTripDialog(@NonNull Context context, Runnable onTripAdded) {
@@ -40,7 +40,7 @@ public class AddTripDialog extends Dialog {
     public void setSelectedImageUri(String uri) {
         this.selectedImageUri = uri;
 
-        // ✅ update preview immediately if dialog still visible
+        // Update preview immediately if dialog still visible
         if (imagePreview != null && uri != null) {
             Glide.with(getContext())
                     .load(Uri.parse(uri))
@@ -66,7 +66,7 @@ public class AddTripDialog extends Dialog {
 
         chooseImageBtn.setOnClickListener(v -> {
             if (onChooseImageClicked != null) {
-                onChooseImageClicked.run(); // fragment opens gallery
+                onChooseImageClicked.run();
             }
         });
 
@@ -78,22 +78,53 @@ public class AddTripDialog extends Dialog {
             String endDate = inputEndDate.getText().toString().trim();
 
             if (destination.isEmpty() || startDate.isEmpty() || endDate.isEmpty()) {
-                Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please fill all required fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // ✅ Create trip with selected image URI
+            // Disable button while processing
+            addTripBtn.setEnabled(false);
+            addTripBtn.setText("Adding trip...");
+
+            // Create trip with selected image URI (may be null)
             AppData.Trip newTrip = new AppData.Trip(
                     UUID.randomUUID().toString(),
                     destination,
                     startDate,
                     endDate,
-                    selectedImageUri // may be null
+                    selectedImageUri
             );
 
-            AppData.getInstance().addTrip(newTrip);
-            if (onTripAdded != null) onTripAdded.run();
-            dismiss();
+            // Automatically geocode the destination
+            GeocodingHelper.geocodeLocation(destination, new GeocodingHelper.GeocodingCallback() {
+                @Override
+                public void onLocationFound(double latitude, double longitude, String displayName) {
+                    newTrip.setLocation(latitude, longitude);
+                    Toast.makeText(getContext(), "Trip added with location: " + displayName, Toast.LENGTH_LONG).show();
+
+                    AppData.getInstance().addTrip(newTrip);
+                    if (onTripAdded != null) onTripAdded.run();
+                    dismiss();
+                }
+
+                @Override
+                public void onLocationNotFound() {
+                    Toast.makeText(getContext(), "Location not found, trip added without map pin", Toast.LENGTH_SHORT).show();
+
+                    AppData.getInstance().addTrip(newTrip);
+                    if (onTripAdded != null) onTripAdded.run();
+                    dismiss();
+                }
+
+                @Override
+                public void onError(String error) {
+                    Toast.makeText(getContext(), "Could not find location, trip added without map pin", Toast.LENGTH_SHORT).show();
+
+                    AppData.getInstance().addTrip(newTrip);
+                    if (onTripAdded != null) onTripAdded.run();
+                    dismiss();
+                }
+            });
         });
     }
 }

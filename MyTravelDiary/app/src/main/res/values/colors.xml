@@ -31,5 +31,7 @@
     <color name="tab_default_text">#566573</color>
     <color name="card_bg_light_gray">#F4F6F7</color>
     <color name="gray_text">#566573</color>
+    <color name="primary_cyan">#16A085</color>
+    <color name="light_green">#D5F4E6</color>
 
 </resources>

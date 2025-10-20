@@ -5,12 +5,13 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnAddDay"
+        android:id="@+id/btnCreateItinerary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="+ Add Itinerary Day"
+        android:text="🗓️ Create Itinerary"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/bottom_nav_dark_green"/>
+        android:backgroundTint="@color/bottom_nav_dark_green"
+        android:textColor="@android:color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,6 +1,10 @@
 package com.example.mytraveldiary;
 
-public class UserAccount {
+import java.io.Serializable;
+
+public class UserAccount implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private final String email;
     private final String password;

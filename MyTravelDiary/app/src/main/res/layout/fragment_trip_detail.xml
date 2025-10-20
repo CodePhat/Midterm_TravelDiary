@@ -1,113 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:fillViewport="true"
     tools:context=".TripDetailFragment">
 
-    <ImageView
-        android:id="@+id/tripImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:background="#EEE"
-        android:contentDescription="Trip Image" />
-
-    <TextView
-        android:id="@+id/tripTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Trip Title"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:paddingTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"/>
-
-    <TextView
-        android:id="@+id/tripDates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dates"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tabItinerary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Itinerary"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:drawableTop="@drawable/ic_tab_itinerary"
-            android:background="@drawable/tab_background_selector"
-            android:textColor="@color/tab_text_color_selector"
-            android:drawableTint="@color/tab_text_color_selector"/>
+        <ImageView
+            android:id="@+id/tripImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="#EEE"
+            android:contentDescription="Trip Image" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tabExpenses"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tripTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Expenses"
-            android:textSize="12sp"
+            android:text="Trip Title"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:drawableTop="@drawable/ic_tab_expenses"
-            android:background="@drawable/tab_background_selector"
-            android:textColor="@color/tab_text_color_selector"
-            android:drawableTint="@color/tab_text_color_selector"/>
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tabDiary"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tripDates"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Diary"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
+            android:text="Dates"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
             android:paddingBottom="8dp"
-            android:drawableTop="@drawable/ic_tab_diary"
-            android:background="@drawable/tab_background_selector"
-            android:textColor="@color/tab_text_color_selector"
-            android:drawableTint="@color/tab_text_color_selector"/>
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tabPhotos"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Photos"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:drawableTop="@drawable/ic_tab_photos"
-            android:background="@drawable/tab_background_selector"
-            android:textColor="@color/tab_text_color_selector"
-            android:drawableTint="@color/tab_text_color_selector"/>
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tabItinerary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Itinerary"
+                android:textSize="12sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:drawableTop="@drawable/ic_tab_itinerary"
+                android:background="@drawable/tab_background_selector"
+                android:textColor="@color/tab_text_color_selector"
+                android:drawableTint="@color/tab_text_color_selector"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tabExpenses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Expenses"
+                android:textSize="12sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:drawableTop="@drawable/ic_tab_expenses"
+                android:background="@drawable/tab_background_selector"
+                android:textColor="@color/tab_text_color_selector"
+                android:drawableTint="@color/tab_text_color_selector"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tabDiary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Diary"
+                android:textSize="12sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:drawableTop="@drawable/ic_tab_diary"
+                android:background="@drawable/tab_background_selector"
+                android:textColor="@color/tab_text_color_selector"
+                android:drawableTint="@color/tab_text_color_selector"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tabPhotos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Photos"
+                android:textSize="12sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:drawableTop="@drawable/ic_tab_photos"
+                android:background="@drawable/tab_background_selector"
+                android:textColor="@color/tab_text_color_selector"
+                android:drawableTint="@color/tab_text_color_selector"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/contentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp" />
-
-</LinearLayout>
+</ScrollView>
