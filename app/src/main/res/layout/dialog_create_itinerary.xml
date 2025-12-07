@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="8dp"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="@color/card_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_itinerary"
+            app:tint="@color/primary_blue"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="Itinerary icon"/>
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_create_itinerary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Destination -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:background="@drawable/bg_alert_info">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_map_marker"
+                app:tint="@color/primary_blue"
+                android:contentDescription="Location"/>
+
+            <TextView
+                android:id="@+id/destinationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tokyo, Japan"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_blue"
+                android:layout_marginStart="12dp"
+                android:contentDescription="Trip destination"/>
+
+        </LinearLayout>
+
+        <!-- Description -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/itinerary_days_question"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Days Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:startIconTint="@color/primary_blue"
+            app:helperText="@string/itinerary_days_helper"
+            app:helperTextTextColor="?android:attr/textColorTertiary"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/itinerary_duration_hint"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:maxLength="3"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel"
+                android:textColor="?android:attr/textColorPrimary"
+                android:background="@drawable/bg_button_outline"
+                app:cornerRadius="24dp"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreate"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="@string/btn_create_plan"
+                android:textColor="@color/text_on_primary"
+                android:textStyle="bold"
+                android:background="@drawable/bg_button_primary"
+                app:icon="@drawable/ic_add"
+                app:iconTint="@color/white"
+                app:cornerRadius="24dp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    android:fillViewport="true"
+    tools:context=".YourProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/card_light">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <ImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/img"
+                    android:contentDescription="Profile Picture"
+                    android:src="@drawable/img"
+                    android:elevation="4dp" />
+
+                <TextView
+                    android:id="@+id/textName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:text="Traveler Name"
+                    android:textColor="@color/text_primary_light"
+                    android:textSize="24sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/textEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="user@email.com"
+                    android:textColor="@color/text_secondary_light"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_name_label"
+                    android:textColor="@color/text_secondary_light"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_input_field"
+                    android:enabled="false"
+                    android:hint="@string/profile_name_label"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/text_primary_light"
+                    android:textColorHint="@color/text_hint_light"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_email_label"
+                    android:textColor="@color/text_secondary_light"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <EditText
+                    android:id="@+id/editEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_input_field"
+                    android:enabled="false"
+                    android:hint="@string/hint_email"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/text_primary_light"
+                    android:textColorHint="@color/text_hint_light"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/favoritesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_favorites_label"
+                    android:textColor="@color/text_secondary_light"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <EditText
+                    android:id="@+id/editFavorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_input_field"
+                    android:enabled="false"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"
+                    android:padding="16dp"
+                    android:hint="@string/profile_favorites_label"
+                    android:textColor="@color/text_primary_light"
+                    android:textColorHint="@color/text_hint_light"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_card_elevated"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/darkModeLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/dark_mode_label"
+                        android:textColor="@color/text_primary_light"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchDarkMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        app:thumbTint="@color/white"
+                        app:trackTint="@color/primary_blue" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="@color/primary_blue"
+                    android:text="@string/language_settings"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_settings"
+                    app:iconTint="@android:color/white"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    style="@style/Widget.Material3.Button" />
+                <TextView
+                    android:id="@+id/languageLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="@string/language_settings" />
+                <TextView
+                    android:id="@+id/clearCacheLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="@string/btn_clear_cache" />
+                <TextView
+                    android:id="@+id/deleteAccountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="@string/btn_delete_account" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSyncCloud"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="32dp"
+                    android:backgroundTint="@color/accent_green"
+                    android:text="@string/sync_to_cloud"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:cornerRadius="16dp"
+                    style="@style/Widget.Material3.Button" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/primary_blue"
+                        android:text="@string/btn_edit_profile"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:cornerRadius="16dp"
+                        style="@style/Widget.Material3.Button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLogout"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/primary_blue_light"
+                        android:text="@string/btn_logout"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium"
+                        app:cornerRadius="16dp"
+                        style="@style/Widget.Material3.Button" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearCache"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="#1976D2"
+                    android:text="@string/btn_clear_cache"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:cornerRadius="16dp"
+                    style="@style/Widget.Material3.Button" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/error"
+                    android:text="@string/btn_delete_account"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:cornerRadius="16dp"
+                    style="@style/Widget.Material3.Button" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</ScrollView>

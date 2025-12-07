@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_light">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_gradient_header"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick Location"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap anywhere on the map to select a location"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:alpha="0.9"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <!-- Map View -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapViewPicker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Selected Location Display -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/card_light">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Location"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_secondary_light"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/selectedLocationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap on the map to select a location"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary_light"
+                android:minHeight="48dp"
+                android:gravity="center_vertical"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:weightSum="2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelLocation"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="@color/text_primary_light"
+            android:background="@drawable/bg_button_outline"
+            app:cornerRadius="24dp"
+            android:layout_marginEnd="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmLocation"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Confirm"
+            android:textColor="@color/text_on_primary"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_primary"
+            app:cornerRadius="24dp"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

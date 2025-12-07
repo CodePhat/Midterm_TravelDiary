@@ -1,0 +1,228 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bottom_nav_bg_light"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:elevation="12dp"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:id="@+id/nav_trips"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/bg_trips"
+                    android:layout_width="70dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bottom_nav_item_selected_bg"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/icon_trips"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/img_1"
+                        app:tint="@color/bottom_nav_text_unselected"
+                        android:contentDescription="Trips" />
+
+                    <TextView
+                        android:id="@+id/text_trips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trips"
+                        android:textSize="12sp"
+                        android:textColor="@color/bottom_nav_text_unselected" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_dashboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <View
+                    android:id="@+id/bg_dashboard"
+                    android:layout_width="70dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bottom_nav_item_selected_bg"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_dashboard"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/img_2"
+                        app:tint="@color/bottom_nav_text_unselected"
+                        android:contentDescription="Dashboard" />
+                    <TextView
+                        android:id="@+id/text_dashboard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dashboard"
+                        android:textSize="12sp"
+                        android:textColor="@color/bottom_nav_text_unselected" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/bg_map"
+                    android:layout_width="70dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bottom_nav_item_selected_bg"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_map"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_map_small"
+                        app:tint="@color/bottom_nav_text_unselected"
+                        android:contentDescription="Map" />
+                    <TextView
+                        android:id="@+id/text_map"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Map"
+                        android:textSize="12sp"
+                        android:textColor="@color/bottom_nav_text_unselected" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/bg_profile"
+                    android:layout_width="70dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bottom_nav_item_selected_bg"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_profile"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/img"
+                        app:tint="@color/bottom_nav_text_unselected"
+                        android:contentDescription="Profile" />
+                    <TextView
+                        android:id="@+id/text_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textSize="12sp"
+                        android:textColor="@color/bottom_nav_text_unselected" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Quick Action FAB - Add New Trip -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabQuickAddTrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/btn_add_new_trip"
+        android:src="@drawable/ic_add"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/primary_blue"
+        app:fabSize="normal"
+        android:layout_margin="16dp"
+        android:elevation="8dp"
+        app:layout_anchor="@id/bottom_navigation_bar"
+        app:layout_anchorGravity="top|end"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/accent_orange" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

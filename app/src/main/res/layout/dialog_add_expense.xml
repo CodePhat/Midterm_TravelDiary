@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Handle Bar -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_handle_bar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Header with Close Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_expense"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary_light"/>
+
+            <ImageButton
+                android:id="@+id/btnCloseDialog"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_close"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/text_secondary_light"
+                android:contentDescription="@string/label_close"
+                android:padding="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Description Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:startIconDrawable="@drawable/ic_description"
+            app:startIconTint="@color/primary_blue"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expenseDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_expense_description"
+                android:inputType="textCapSentences"
+                android:textSize="16sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Amount Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:prefixText="$"
+            app:startIconDrawable="@drawable/ic_money"
+            app:startIconTint="@color/accent_green"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expenseAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_expense_amount"
+                android:inputType="numberDecimal"
+                android:textSize="16sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Date Picker -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:startIconTint="@color/primary_blue"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expenseDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_expense_date"
+                android:inputType="none"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:clickable="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Category Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expense_category"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupExpenseCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingVertical="8dp"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFood"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_food"
+                android:checkable="true"
+                android:textColor="@color/chip_text_selector"
+                app:chipIcon="@drawable/ic_food"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/chip_food_bg_selector"
+                app:chipStrokeWidth="0dp"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTransport"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_transport"
+                android:checkable="true"
+                android:textColor="@color/chip_text_selector"
+                app:chipIcon="@drawable/ic_transport"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/chip_transport_bg_selector"
+                app:chipStrokeWidth="0dp"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAccommodation"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_accommodation"
+                android:checkable="true"
+                android:textColor="@color/chip_text_selector"
+                app:chipIcon="@drawable/ic_hotel"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/chip_accommodation_bg_selector"
+                app:chipStrokeWidth="0dp"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEntertainment"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_entertainment"
+                android:checkable="true"
+                android:textColor="@color/chip_text_selector"
+                app:chipIcon="@drawable/ic_entertainment"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/chip_entertainment_bg_selector"
+                app:chipStrokeWidth="0dp"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipShopping"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_shopping"
+                android:checkable="true"
+                android:textColor="@color/chip_text_selector"
+                app:chipIcon="@drawable/ic_shopping"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/chip_shopping_bg_selector"
+                app:chipStrokeWidth="0dp"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOther"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_other"
+                android:checkable="true"
+                android:textColor="@color/chip_text_selector"
+                app:chipIcon="@drawable/ic_other"
+                app:chipIconTint="@color/white"
+                app:chipBackgroundColor="@color/chip_other_bg_selector"
+                app:chipStrokeWidth="0dp"
+                app:chipCornerRadius="20dp"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Legacy Spinner (Hidden) -->
+        <Spinner
+            android:id="@+id/expenseCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel"
+                android:textColor="@color/text_primary_light"
+                android:background="@drawable/bg_button_outline"
+                app:cornerRadius="24dp"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="@string/btn_save_expense"
+                android:textColor="@color/text_on_primary"
+                android:textStyle="bold"
+                android:background="@drawable/bg_button_primary"
+                app:cornerRadius="24dp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

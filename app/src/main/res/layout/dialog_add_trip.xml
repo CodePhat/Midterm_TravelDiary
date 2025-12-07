@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Handle Bar for Bottom Sheet -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_handle_bar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Header with Close Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dialog_add_trip_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary_light"/>
+
+            <ImageButton
+                android:id="@+id/btnCloseDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_close"
+                android:padding="4dp"
+                android:src="@drawable/ic_close"
+                app:tint="@color/text_secondary_light" />
+
+        </LinearLayout>
+
+        <!-- Destination Input with Autocomplete -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/destinationInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:startIconDrawable="@drawable/ic_location"
+            app:startIconTint="@color/primary_blue"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_map_marker"
+            app:endIconTint="@color/primary_blue"
+            app:endIconContentDescription="@string/cd_pick_from_map"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <AutoCompleteTextView
+                android:id="@+id/inputDestination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_destination"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:imeOptions="actionNext"
+                android:completionThreshold="2"
+                android:dropDownHeight="wrap_content"
+                android:nextFocusDown="@id/inputStartDate"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Start Date Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:startIconTint="@color/primary_blue"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_start_date"
+                android:inputType="none"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:clickable="true"
+                android:cursorVisible="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- End Date Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:startIconTint="@color/primary_blue"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_end_date"
+                android:inputType="none"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:clickable="true"
+                android:cursorVisible="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Category Chips -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_trip_type"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupTripType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:chipSpacingHorizontal="8dp"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBeach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_type_beach"
+                android:textColor="@color/chip_beach"
+                app:chipIcon="@drawable/ic_beach"
+                app:chipIconTint="@color/chip_beach"
+                app:chipBackgroundColor="@color/chip_beach_bg"
+                app:chipStrokeWidth="0dp"
+                android:background="@drawable/bg_chip_beach"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMountain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_type_mountain"
+                android:textColor="@color/chip_mountain"
+                app:chipIcon="@drawable/ic_mountain"
+                app:chipIconTint="@color/chip_mountain"
+                app:chipBackgroundColor="@color/chip_mountain_bg"
+                app:chipStrokeWidth="0dp"
+                android:background="@drawable/bg_chip_mountain"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCamping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_type_camping"
+                android:textColor="@color/chip_camping"
+                app:chipIcon="@drawable/ic_camping"
+                app:chipIconTint="@color/chip_camping"
+                app:chipBackgroundColor="@color/chip_camping_bg"
+                app:chipStrokeWidth="0dp"
+                android:background="@drawable/bg_chip_camping"
+                app:chipCornerRadius="20dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_type_city"
+                android:textColor="@color/chip_city"
+                app:chipIcon="@drawable/ic_city"
+                app:chipIconTint="@color/chip_city"
+                app:chipBackgroundColor="@color/chip_city_bg"
+                app:chipStrokeWidth="0dp"
+                android:background="@drawable/bg_chip_city"
+                app:chipCornerRadius="20dp"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Set Alarm Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_set_reminder"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchSetAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_enable_reminder"
+            android:textColor="@color/text_primary_light"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:id="@+id/alarmSettingsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetAlarmTime"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="@string/btn_set_reminder_time"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_blue"
+                app:strokeColor="@color/primary_blue"
+                app:strokeWidth="1dp"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_calendar"
+                app:iconTint="@color/primary_blue"
+                android:layout_marginBottom="12dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_reminder_message"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputAlarmMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="2"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Image Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_trip_image"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChooseImage"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/add_image"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"
+            app:strokeColor="@color/primary_blue"
+            app:strokeWidth="2dp"
+            app:cornerRadius="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Image Preview -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imagePreviewCard"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@color/divider_light"
+                android:contentDescription="Image preview"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelAddTrip"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel_trip"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary_light"
+                android:background="@drawable/bg_button_outline"
+                app:cornerRadius="24dp"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddTrip"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="@string/btn_add_trip"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_primary"
+                android:textStyle="bold"
+                android:background="@drawable/bg_button_primary"
+                app:cornerRadius="24dp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

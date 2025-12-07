@@ -1,0 +1,352 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Nhật Ký Du Lịch Của Tôi</string>
+
+    <!-- Common Actions -->
+    <string name="btn_save">Lưu</string>
+    <string name="btn_cancel">Hủy</string>
+    <string name="btn_delete">Xóa</string>
+    <string name="btn_edit">Chỉnh sửa</string>
+    <string name="btn_add">Thêm</string>
+    <string name="btn_close">Đóng</string>
+
+    <!-- Profile Fragment -->
+    <string name="btn_edit_profile">Chỉnh sửa hồ sơ</string>
+    <string name="btn_save_changes">Lưu thay đổi</string>
+    <string name="btn_logout">Đăng xuất</string>
+    <string name="btn_delete_account">Xóa tài khoản</string>
+    <string name="btn_clear_cache">🗑️ Xóa bộ nhớ cache</string>
+    <string name="profile_name_label">Họ và tên</string>
+    <string name="profile_email_label">Địa chỉ email</string>
+    <string name="profile_favorites_label">Điểm đến yêu thích</string>
+    <string name="dark_mode_label">Chế độ tối</string>
+
+    <!-- Login Activity -->
+    <string name="login_title">Chào mừng trở lại</string>
+    <string name="login_subtitle">Đăng nhập để tiếp tục</string>
+    <string name="hint_email">Địa chỉ email</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="btn_login">Đăng nhập</string>
+    <string name="btn_register">Tạo tài khoản</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+
+    <!-- Trip Detail Fragment -->
+    <string name="msg_no_expenses">Chưa có chi phí nào được thêm!</string>
+    <string name="total_zero">Tổng: $0.00</string>
+    <string name="total_format">Tổng: $%.2f</string>
+    <string name="btn_select_time">Chọn thời gian</string>
+    <string name="btn_add_expense">Thêm chi phí</string>
+    <string name="btn_add_diary">Thêm nhật ký</string>
+    <string name="btn_add_photo">Thêm ảnh</string>
+    <string name="btn_add_activity">Thêm hoạt động</string>
+    <string name="btn_create_itinerary">Tạo lịch trình</string>
+    <string name="msg_create_itinerary">Nhấn \'Tạo lịch trình\' để lên kế hoạch cho chuyến đi của bạn từng ngày</string>
+    <string name="msg_adding_trip">Đang thêm chuyến đi...</string>
+
+    <!-- Add Trip Dialog -->
+    <string name="dialog_add_trip_title">Thêm Chuyến Đi Mới</string>
+    <string name="hint_destination">Điểm Đến</string>
+    <string name="hint_start_date">Ngày Bắt Đầu (YYYY-MM-DD)</string>
+    <string name="hint_end_date">Ngày Kết Thúc (YYYY-MM-DD)</string>
+    <string name="label_trip_type">Loại Chuyến Đi</string>
+    <string name="trip_type_beach">Biển</string>
+    <string name="trip_type_mountain">Núi</string>
+    <string name="trip_type_camping">Cắm Trại</string>
+    <string name="trip_type_city">Thành Phố</string>
+    <string name="label_set_reminder">Đặt Nhắc Nhở (Tùy Chọn)</string>
+    <string name="switch_enable_reminder">Bật nhắc nhở chuyến đi</string>
+    <string name="btn_set_reminder_time">Đặt Thời Gian Nhắc Nhở</string>
+    <string name="hint_reminder_message">Tin nhắn nhắc nhở</string>
+    <string name="label_trip_image">Ảnh Chuyến Đi</string>
+    <string name="btn_cancel_trip">Hủy</string>
+    <string name="btn_add_trip">Thêm Chuyến Đi</string>
+    <string name="cd_close">Đóng</string>
+    <string name="cd_pick_from_map">Chọn từ bản đồ</string>
+
+    <!-- Tabs -->
+    <string name="tab_overview">Tổng quan</string>
+    <string name="tab_expenses">Chi phí</string>
+    <string name="tab_itinerary">Lịch trình</string>
+    <string name="tab_diary">Nhật ký</string>
+    <string name="tab_photos">Ảnh</string>
+    <string name="tab_maps">Bản đồ</string>
+
+    <!-- Trip Detail Labels -->
+    <string name="label_trip_title">Tiêu đề chuyến đi</string>
+    <string name="label_dates">Ngày tháng</string>
+    <string name="label_day">Ngày %02d</string>
+    <string name="label_add_activity">+ Thêm hoạt động</string>
+    <string name="label_no_activities">Chưa có hoạt động nào</string>
+    <string name="label_expenses_summary">Tóm tắt chi phí</string>
+    <string name="label_add">+ Thêm</string>
+    <string name="btn_add_new_trip">Thêm chuyến đi mới</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Bảng điều khiển</string>
+    <string name="nav_trips">Chuyến đi</string>
+    <string name="nav_map">Bản đồ</string>
+    <string name="nav_profile">Hồ sơ</string>
+
+    <!-- Dashboard Fragment -->
+    <string name="dashboard_welcome">Xin chào, %s!</string>
+    <string name="dashboard_welcome_full">Xin chào, %s! Sẵn sàng du lịch?</string>
+    <string name="dashboard_search_hint">Tìm kiếm chuyến đi hoặc địa điểm...</string>
+    <string name="stats_trips">Chuyến đi</string>
+    <string name="stats_spent">Đã chi</string>
+    <string name="stats_avg_per_trip">TB/chuyến</string>
+    <string name="stats_total_trips">Tổng số chuyến đi</string>
+    <string name="stats_total_expenses">Tổng chi phí</string>
+    <string name="stats_favorite_places">Địa điểm yêu thích</string>
+    <string name="section_recent_trips">Chuyến đi gần đây</string>
+    <string name="section_expense_breakdown">Phân tích chi phí</string>
+    <string name="section_spending_trend">Xu Hướng Chi Tiêu</string>
+    <string name="label_daily_spending">Biến Động Chi Tiêu Hàng Ngày</string>
+    <string name="msg_no_recent_trips">Không có chuyến đi gần đây để hiển thị.</string>
+    <string name="msg_no_recent_trips_sub">Bắt đầu lên kế hoạch cho cuộc phiêu lưu tiếp theo của bạn!</string>
+    <string name="btn_see_all">Xem tất cả</string>
+
+    <!-- Map Fragment -->
+    <string name="map_search_hint">Tìm kiếm địa điểm...</string>
+    <string name="map_loading">Đang tải bản đồ...</string>
+    <string name="map_error">Không thể tải bản đồ</string>
+
+    <!-- Trips Fragment -->
+    <string name="fab_add_trip">Thêm chuyến đi mới</string>
+    <string name="search_trips_hint">Tìm kiếm chuyến đi...</string>
+    <string name="grid_view">Chế độ lưới</string>
+    <string name="list_view">Chế độ danh sách</string>
+    <string name="empty_trips_title">Chưa có chuyến đi nào</string>
+    <string name="empty_trips_message">Bắt đầu hành trình của bạn bằng cách thêm chuyến đi đầu tiên!</string>
+    <string name="no_trips_yet">Chưa có chuyến đi nào</string>
+    <string name="start_planning">Bắt đầu lên kế hoạch cho cuộc phiêu lưu tiếp theo của bạn!</string>
+
+
+    <!-- Destination Detail -->
+    <string name="btn_book_now">Đặt ngay!</string>
+    <string name="price_per_person">/người</string>
+    <string name="people_reviewed">Người đánh giá</string>
+    <string name="rating_format">%.1f</string>
+    <string name="rating_out_of">/5</string>
+    <string name="msg_added_to_favorites">Đã thêm vào yêu thích</string>
+    <string name="msg_removed_from_favorites">Đã xóa khỏi yêu thích</string>
+    <string name="msg_booking">Đang đặt %s...</string>
+
+    <!-- Toast Messages -->
+    <string name="msg_profile_updated">Cập nhật hồ sơ thành công</string>
+    <string name="msg_logged_out">Đăng xuất thành công</string>
+    <string name="msg_account_deleted">Đã xóa tài khoản</string>
+    <string name="msg_cache_cleared">Đã xóa tất cả dữ liệu thành công</string>
+    <string name="msg_dark_mode_enabled">Đã bật chế độ tối</string>
+    <string name="msg_light_mode_enabled">Đã bật chế độ sáng</string>
+    <string name="msg_trip_not_found">Không tìm thấy chuyến đi</string>
+    <string name="msg_trip_id_missing">Thiếu ID chuyến đi</string>
+    <string name="msg_profile_image_updated">Đã cập nhật ảnh đại diện</string>
+    <string name="msg_itinerary_created">Đã tạo lịch trình %d ngày!</string>
+    <string name="msg_enter_activity">Vui lòng nhập mô tả hoạt động</string>
+    <string name="msg_invalid_days">Vui lòng nhập từ 1-365 ngày</string>
+    <string name="msg_name_email_required">Tên và email không được để trống</string>
+
+    <!-- Dialog Titles -->
+    <string name="dialog_delete_account_title">Xóa tài khoản</string>
+    <string name="dialog_delete_account_message">Bạn có chắc chắn muốn xóa tài khoản này? Hành động này không thể hoàn tác.</string>
+    <string name="dialog_clear_cache_title">Xóa bộ nhớ cache</string>
+
+    <!-- Login / Sign Up Screen -->
+    <string name="welcome_title">Chào mừng đến với Travel Diary</string>
+    <string name="welcome_subtitle">Hành trình của bạn bắt đầu tại đây</string>
+    <string name="hint_full_name">Họ và tên</string>
+    <string name="action_sign_in">Đăng nhập</string>
+    <string name="action_sign_up">Đăng ký</string>
+    <string name="toggle_signup">Chưa có tài khoản? Đăng ký</string>
+    <string name="toggle_login">Đã có tài khoản? Đăng nhập</string>
+    <string name="social_divider_text">Đăng ký hoặc đăng nhập bằng</string>
+    <string name="google">Google</string>
+    <string name="apple">Apple</string>
+    <string name="logo_content_description">Biểu tượng Travel Diary</string>
+    <string name="bottom_wave_description">Trang trí đường sóng phía dưới</string>
+
+    <!-- Locale / Settings -->
+    <string name="lang_en">Tiếng Anh</string>
+    <string name="lang_vi">Tiếng Việt</string>
+    <string name="change_language_loading">Đang áp dụng ngôn ngữ…</string>
+    <string name="change_language">Thay đổi ngôn ngữ</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="settings_title">Cài đặt</string>
+
+    <!-- Alarm / Itinerary -->
+    <string name="set_alarm">Đặt báo thức</string>
+    <string name="alarm_text_hint">Nội dung báo thức (tùy chọn)</string>
+    <string name="alarm_optional">Báo thức (tùy chọn)</string>
+    <string name="alarm_time">Thời gian báo thức</string>
+    <string name="enable_alarm">Bật báo thức</string>
+    <string name="disable_alarm">Tắt báo thức</string>
+    <string name="alarm_set_success">Đã đặt báo thức thành công</string>
+    <string name="alarm_cancelled">Đã hủy báo thức</string>
+    <string name="notification_title">Nhắc nhở Travel Diary</string>
+
+    <!-- General -->
+    <string name="loading">Đang tải…</string>
+    <string name="back">Quay lại</string>
+    <string name="go_back">&lt;-</string>
+    <string name="next">Tiếp theo</string>
+    <string name="done">Hoàn tất</string>
+    <string name="ok">OK</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="retry">Thử lại</string>
+
+    <!-- Errors & Validation -->
+    <string name="error_empty_field">Trường này không được để trống</string>
+    <string name="error_invalid_email">Email không hợp lệ</string>
+    <string name="error_short_password">Mật khẩu phải có ít nhất 6 ký tự</string>
+    <string name="error_login_failed">Đăng nhập thất bại. Vui lòng thử lại.</string>
+    <string name="error_signup_failed">Đăng ký thất bại. Vui lòng thử lại.</string>
+    <string name="error_network">Lỗi kết nối mạng</string>
+    <string name="error_unknown">Đã xảy ra lỗi. Vui lòng thử lại.</string>
+
+    <!-- Add Image / Photo -->
+    <string name="add_image">Thêm ảnh</string>
+    <string name="take_photo">Chụp ảnh</string>
+    <string name="choose_from_gallery">Chọn từ thư viện</string>
+
+    <!-- Trip Details -->
+    <string name="trip_details">Chi tiết chuyến đi</string>
+    <string name="trip_name">Tên chuyến đi</string>
+    <string name="start_date">Ngày bắt đầu</string>
+    <string name="end_date">Ngày kết thúc</string>
+    <string name="destination">Điểm đến</string>
+    <string name="description">Mô tả</string>
+    <!-- Itinerary -->
+    <string name="itinerary">Lịch trình</string>
+    <string name="itinerary_days_question">Chuyến đi này sẽ kéo dài bao nhiêu ngày?</string>
+    <string name="itinerary_days_helper">Nhập số từ 1-365</string>
+    <string name="itinerary_duration_hint">Thời gian chuyến đi (ngày)</string>
+    <string name="btn_create_plan">Tạo kế hoạch</string>
+    <string name="budget">Ngân sách</string>
+    <string name="expenses">Chi phí</string>
+    <string name="photos">Ảnh</string>
+    <string name="save_trip">Lưu chuyến đi</string>
+    <string name="delete_trip">Xóa chuyến đi</string>
+    <string name="edit_trip">Chỉnh sửa chuyến đi</string>
+    <string name="hint_trip_name">Nhập tên chuyến đi</string>
+    <string name="hint_destination_name">Nhập điểm đến</string>
+    <string name="hint_description">Mô tả chuyến đi (tùy chọn)</string>
+    <string name="select_start_date">Chọn ngày bắt đầu</string>
+    <string name="select_end_date">Chọn ngày kết thúc</string>
+
+    <!-- Expense -->
+    <string name="add_expense">Thêm Chi Phí</string>
+    <string name="expense_name">Tên Chi Phí</string>
+    <string name="expense_amount">Số Tiền</string>
+    <string name="expense_category">Danh Mục</string>
+    <string name="total_expenses">Tổng Chi Phí</string>
+    <string name="remaining_budget">Ngân Sách Còn Lại</string>
+    <string name="hint_expense_description">Mô Tả</string>
+    <string name="hint_expense_amount">Số Tiền</string>
+    <string name="hint_expense_date">Ngày</string>
+    <string name="category_food">Đồ Ăn</string>
+    <string name="category_transport">Đi Lại</string>
+    <string name="category_accommodation">Chỗ Ở</string>
+    <string name="category_entertainment">Giải Trí</string>
+    <string name="category_shopping">Mua Sắm</string>
+    <string name="category_other">Khác</string>
+    <string name="btn_save_expense">Lưu</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Hồ sơ</string>
+    <string name="account_settings">Cài đặt tài khoản</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="logout_confirmation">Bạn có chắc muốn đăng xuất?</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Nhắc nhở chuyến đi</string>
+    <string name="notification_channel_desc">Thông báo cho lịch trình và báo thức chuyến đi</string>
+    <string name="notification_default_text">Nhắc nhở chuyến đi của bạn</string>
+
+    <!-- Dashboard -->
+    <string name="welcome_greeting">Xin chào,</string>
+    <string name="ready_to_travel">Sẵn sàng du lịch?</string>
+    <string name="my_trips">Chuyến đi của tôi</string>
+    <string name="see_all">Xem tất cả</string>
+    <string name="trips_label">Chuyến đi</string>
+    <string name="spent_label">Đã chi</string>
+    <string name="avg_trip_label">TB/Chuyến</string>
+
+    <!-- Trip Categories -->
+    <string name="category_beach">Bãi biển</string>
+    <string name="category_mountain">Núi non</string>
+    <string name="category_camping">Cắm trại</string>
+    <string name="category_city">Thành phố</string>
+    <string name="dialog_clear_cache_message">Điều này sẽ xóa tất cả các chuyến đi, chi phí, lịch trình và nhật ký của bạn. Tài khoản của bạn sẽ vẫn còn nhưng tất cả dữ liệu sẽ bị xóa.\n\nBạn có chắc chắn?</string>
+    <string name="dialog_create_itinerary_title">Tạo kế hoạch lịch trình</string>
+    <string name="dialog_add_activity_title">Thêm hoạt động vào Ngày %d</string>
+    <string name="hint_trip_duration">Thời gian chuyến đi (ngày)</string>
+    <string name="hint_activity_description">Mô tả hoạt động</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_profile_picture">Ảnh đại diện</string>
+    <string name="cd_trip_image">Ảnh chuyến đi</string>
+    <string name="cd_destination_image">Ảnh điểm đến</string>
+    <string name="cd_back">Quay lại</string>
+    <string name="cd_favorite">Yêu thích</string>
+    <string name="cd_search">Tìm kiếm</string>
+    <string name="cd_filter">Lọc</string>
+    <string name="cd_toggle_view">Chuyển chế độ xem</string>
+    <string name="cd_location">Vị trí</string>
+    <string name="cd_date">Ngày</string>
+    <string name="cd_rating">Đánh giá</string>
+    <string name="cd_no_trips">Không có chuyến đi</string>
+
+    <!-- Itinerary -->
+    <string name="day_format">Ngày %02d</string>
+    <string name="all_day">Cả ngày</string>
+    <string name="time_format">%d:%02d %s</string>
+    <string name="destination_format">Điểm đến: %s</string>
+    <string name="duration_question">Chuyến đi này kéo dài bao nhiêu ngày?</string>
+
+    <!-- Diary Dialog -->
+    <string name="dialog_add_diary_title">Nhật Ký Mới</string>
+    <string name="hint_diary_entry">Viết câu chuyện du lịch của bạn...</string>
+    <string name="label_quick_tips">Mẹo Nhanh</string>
+    <string name="diary_tips">• Mô tả những gì bạn nhìn thấy và trải nghiệm\n• Chia sẻ cảm xúc và ấn tượng của bạn\n• Ghi lại những khoảnh khắc đáng nhớ hoặc bất ngờ</string>
+    <string name="btn_save_entry">Lưu Mục</string>
+    <string name="label_close">Đóng</string>
+
+    <!-- Misc -->
+    <string name="unknown">Không xác định</string>
+    <string name="error">Lỗi</string>
+
+    <!-- Language Settings -->
+    <string name="language_settings">Ngôn ngữ</string>
+    <string name="select_language">Chọn ngôn ngữ</string>
+    <string name="language_changed">Đã thay đổi ngôn ngữ thành công</string>
+    <string name="restart_required">Vui lòng khởi động lại ứng dụng để áp dụng thay đổi</string>
+
+    <!-- Firebase Sync -->
+    <string name="sync_in_progress">Đang đồng bộ dữ liệu...</string>
+    <string name="sync_complete">Đồng bộ hoàn tất</string>
+    <string name="sync_failed">Đồng bộ thất bại</string>
+    <string name="sync_to_cloud">Đồng bộ lên Cloud</string>
+    <string name="last_synced">Đồng bộ lần cuối: %s</string>
+
+    <!-- QoL Features -->
+    <string name="press_back_again_to_exit">Nhấn back lần nữa để thoát</string>
+
+    <!-- Smart Language Detection -->
+    <string name="language_suggestion_title">Chuyển Ngôn Ngữ?</string>
+    <string name="language_suggestion_message">Có vẻ như bạn đang nhập bằng %s. Bạn có muốn chuyển ngôn ngữ ứng dụng không?</string>
+    <string name="language_suggestion_switch">Chuyển sang %s</string>
+    <string name="language_suggestion_no_thanks">Không, cảm ơn</string>
+    <string name="language_suggestion_dont_ask">Không hỏi lại</string>
+    <string name="language_english">Tiếng Anh</string>
+    <string name="language_vietnamese">Tiếng Việt</string>
+
+    <!-- Add Activity Dialog -->
+    <string name="dialog_add_activity">Thêm Hoạt Động</string>
+    <string name="label_time">Thời Gian</string>
+    <string name="helper_text_activity">Bạn sẽ làm gì?</string>
+    <string name="switch_remind_activity">Nhắc nhở tôi về hoạt động này</string>
+    <string name="hint_alarm_message">Tin nhắn nhắc nhở</string>
+    <string name="btn_add_activity_confirm">Thêm Hoạt Động</string>
+</resources>

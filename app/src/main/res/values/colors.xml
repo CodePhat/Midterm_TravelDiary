@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ==================== BASE COLORS ==================== -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- ==================== PRIMARY COLORS - Smooth Blue Theme ==================== -->
+    <color name="primary_blue">#1E88E5</color>
+    <color name="primary_blue_dark">#1565C0</color>
+    <color name="primary_blue_light">#42A5F5</color>
+    <color name="primary_blue_lighter">#E3F2FD</color>
+    <color name="primary_blue_subtle">#90CAF9</color>
+
+    <!-- Gradient Colors -->
+    <color name="gradient_blue_start">#1E88E5</color>
+    <color name="gradient_blue_mid">#2196F3</color>
+    <color name="gradient_blue_end">#42A5F5</color>
+
+    <!-- Secondary Colors -->
+    <color name="accent_orange">#FF9F43</color>
+    <color name="accent_pink">#EE5A6F</color>
+    <color name="accent_green">#26DE81</color>
+    <color name="accent_purple">#A55EEA</color>
+    <color name="accent_yellow">#FED330</color>
+
+    <!-- ==================== LIGHT THEME COLORS - Smooth & Modern ==================== -->
+    <color name="bg_light">#F5F7FA</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="card_light">#FFFFFF</color>
+    <color name="card_elevated">#FAFBFC</color>
+    <color name="divider_light">#E1E4E8</color>
+    <color name="divider_subtle">#F0F2F5</color>
+
+    <!-- Text Colors - Light Theme -->
+    <color name="text_primary_light">#1C2833</color>
+    <color name="text_secondary_light">#5D6D7E</color>
+    <color name="text_tertiary_light">#95A5A6</color>
+    <color name="text_hint_light">#BDC3C7</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_on_surface">#1C2833</color>
+
+    <!-- ==================== DARK THEME COLORS (From Choice 2) ==================== -->
+    <color name="bg_dark">#0F0F0F</color>
+    <color name="surface_dark">#1C1C1E</color>
+    <color name="card_dark">#2C2C2E</color>
+    <color name="divider_dark">#3A3A3C</color>
+
+    <!-- Text Colors - Dark Theme -->
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#EBEBF5</color>
+    <color name="text_tertiary_dark">#EBEBF599</color>
+
+    <!-- ==================== CATEGORY CHIP COLORS ==================== -->
+    <color name="chip_beach">#47A7FF</color>
+    <color name="chip_beach_bg">#E3F2FF</color>
+    <color name="chip_mountain">#6C757D</color>
+    <color name="chip_mountain_bg">#F1F3F5</color>
+    <color name="chip_camping">#FF9F43</color>
+    <color name="chip_camping_bg">#FFF4E6</color>
+    <color name="chip_city">#A55EEA</color>
+    <color name="chip_city_bg">#F3EBFF</color>
+
+    <!-- ==================== STATUS COLORS ==================== -->
+    <color name="success">#26DE81</color>
+    <color name="warning">#FED330</color>
+    <color name="error">#EE5A6F</color>
+    <color name="info">#47A7FF</color>
+
+    <color name="success_bg">#E8F8F0</color>
+    <color name="warning_bg">#FFF9E6</color>
+    <color name="error_bg">#FFEBEE</color>
+    <color name="info_bg">#E3F2FF</color>
+
+    <!-- ==================== GRADIENT COLORS - Smooth Blue ==================== -->
+    <color name="gradient_start">#1E88E5</color>
+    <color name="gradient_end">#42A5F5</color>
+    <color name="gradient_dark_start">#1C1C1E</color>
+    <color name="gradient_dark_end">#2C2C2E</color>
+
+    <!-- ==================== BOTTOM NAVIGATION - Modern & Smooth ==================== -->
+    <color name="bottom_nav_selected">#1E88E5</color>
+    <color name="bottom_nav_unselected">#95A5A6</color>
+    <color name="bottom_nav_bg_light">#FFFFFF</color>
+    <color name="bottom_nav_bg_dark">#1C1C1E</color>
+    <color name="bottom_nav_bg_unselected">#F5F7FA</color>
+    <color name="bottom_nav_text_selected">#1E88E5</color>
+    <color name="bottom_nav_text_unselected">#95A5A6</color>
+    <color name="bottom_nav_selected_bg">#E3F2FD</color>
+    <color name="bottom_nav_ripple">#1E1E88E5</color>
+
+    <!-- ==================== RATINGS & BADGES ==================== -->
+    <color name="rating_star">#FED330</color>
+    <color name="badge_bg">#FF9F43</color>
+    <color name="badge_text">#FFFFFF</color>
+
+    <!-- ==================== EXPENSE CATEGORY COLORS ==================== -->
+    <color name="expense_food">#FF9F43</color>
+    <color name="expense_transport">#47A7FF</color>
+    <color name="expense_accommodation">#A55EEA</color>
+    <color name="expense_entertainment">#EE5A6F</color>
+    <color name="expense_shopping">#26DE81</color>
+    <color name="expense_other">#6C757D</color>
+
+    <!-- ==================== MAP COLORS ==================== -->
+    <color name="map_marker">#47A7FF</color>
+    <color name="map_route">#FF9F43</color>
+    <color name="map_overlay">#80000000</color>
+
+    <!-- ==================== BUTTON STATES - Modern ==================== -->
+    <color name="button_enabled">#1E88E5</color>
+    <color name="button_disabled">#E1E4E8</color>
+    <color name="button_pressed">#1565C0</color>
+    <color name="button_ripple">#331E88E5</color>
+    <color name="button_text_enabled">#FFFFFF</color>
+    <color name="button_text_disabled">#95A5A6</color>
+
+    <!-- ==================== SHADOWS & OVERLAYS - Smooth ==================== -->
+    <color name="shadow_light">#0D000000</color>
+    <color name="shadow_medium">#1A000000</color>
+    <color name="shadow_strong">#33000000</color>
+    <color name="overlay_light">#26FFFFFF</color>
+    <color name="overlay_medium">#4DFFFFFF</color>
+    <color name="overlay_dark">#80000000</color>
+    <color name="scrim">#B3000000</color>
+    <color name="elevation_overlay">#0D000000</color>
+
+    <!-- ==================== LEGACY COMPATIBILITY ==================== -->
+    <color name="purple">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+
+    <!-- ==================== SIMPLE COLOR ALIASES ==================== -->
+    <color name="orange">@color/accent_orange</color>
+    <color name="blue">@color/primary_blue</color>
+    <color name="pink">@color/accent_pink</color>
+    <color name="yellow">@color/accent_yellow</color>
+
+    <!-- ==================== PROFILE COLORS ==================== -->
+    <color name="profile_bg_blue">#E3F2FF</color>
+    <color name="profile_text_value">#1A1A1A</color>
+    <color name="profile_text_label">#6C757D</color>
+
+    <!-- ==================== TAB COLORS ==================== -->
+    <color name="tab_dark_green">#16A085</color>
+    <color name="tab_light_green">#E8F8F0</color>
+    <color name="tab_default_text">#ADB5BD</color>
+
+    <!-- ==================== ADDITIONAL NAVIGATION COLORS ==================== -->
+    <color name="bottom_nav_dark_green">#16A085</color>
+    <color name="bottom_nav_default_color">#ADB5BD</color>
+
+    <!-- ==================== ADDITIONAL UI COLORS ==================== -->
+    <color name="primary_cyan">#47A7FF</color>
+    <color name="light_green">#E8F8F0</color>
+    <color name="gray">#E8EAED</color>
+
+    <!-- ==================== BUTTON COLORS ==================== -->
+    <color name="profile_btn_orange">#FF9800</color>
+    <color name="profile_btn_red">#D32F2F</color>
+
+    <!-- ==================== CARD BACKGROUNDS ==================== -->
+    <color name="card_bg_light_gray">#F5F5F5</color>
+
+    <!-- ==================== INPUT FIELD COLORS ==================== -->
+    <color name="edittext_bg">#FFFFFF</color>
+    <color name="edittext_border">#E8EAED</color>
+    <color name="edittext_hint">#ADB5BD</color>
+
+</resources>

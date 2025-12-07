@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Flag pole -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M5,3 L7,3 L7,21 L5,21 Z"/>
+
+    <!-- Flag -->
+    <path
+        android:fillColor="#E74C3C"
+        android:pathData="M7,3 L18,7 L7,11 Z"/>
+
+    <!-- Shadow/base -->
+    <path
+        android:fillColor="#555555"
+        android:pathData="M3,21 L9,21 L6,23 Z"/>
+</vector>

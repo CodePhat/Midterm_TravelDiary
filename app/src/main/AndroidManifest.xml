@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ==================== PERMISSIONS ==================== -->
+    <!-- Internet & Network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Location Services -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Storage (for older Android versions) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
+
+    <!-- Storage (for Android 13+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <!-- Camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Notifications (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Alarms & Exact Alarms (Android 12+) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <!-- Boot Receiver -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Foreground Service -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <!-- Wake Lock (for alarms) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Hardware features (optional) -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyTravelDiary"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- ==================== GOOGLE MAPS API KEY ==================== -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_GOOGLE_MAPS_API_KEY" />
+
+        <!-- ==================== ACTIVITIES ==================== -->
+        <activity
+            android:name=".ui.activities.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".ui.activities.LoadingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyTravelDiary"
+            android:screenOrientation="portrait" />
+
+        <!-- ==================== SERVICES ==================== -->
+        <!-- Location Tracking Service (Bound & Foreground) -->
+        <service
+            android:name=".services.location.LocationTrackingService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Data Sync Service (Intent Service) -->
+        <service
+            android:name=".services.sync.DataSyncService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Trip Sync Service (Background data sync) -->
+        <service
+            android:name=".services.TripSyncService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- ==================== BROADCAST RECEIVERS ==================== -->
+        <!-- Boot Receiver - Reschedules alarms after device reboot -->
+        <receiver
+            android:name=".receivers.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Trip Broadcast Receiver - Handles trip events -->
+        <receiver
+            android:name=".broadcasts.TripBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.mytraveldiary.TRIP_ADDED" />
+                <action android:name="com.example.mytraveldiary.TRIP_UPDATED" />
+                <action android:name="com.example.mytraveldiary.TRIP_DELETED" />
+                <action android:name="com.example.mytraveldiary.DATA_SYNCED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Alarm Receiver - Handles scheduled trip reminders -->
+        <receiver
+            android:name=".broadcasts.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.mytraveldiary.ACTION_TRIP_REMINDER" />
+                <action android:name="com.example.mytraveldiary.ACTION_DAILY_SYNC" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Network Change Receiver - Monitors connectivity changes -->
+        <receiver
+            android:name=".receivers.NetworkChangeReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Notification Action Receiver - Handles notification button actions -->
+        <receiver
+            android:name=".receivers.NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.mytraveldiary.ACTION_DISMISS" />
+                <action android:name="com.example.mytraveldiary.ACTION_VIEW" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Diary Reminder Receiver - Handles daily diary entry reminders -->
+        <receiver
+            android:name=".receivers.DiaryReminderReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.mytraveldiary.DAILY_DIARY_REMINDER" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ==================== WORKMANAGER INITIALIZATION ==================== -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+        <!-- ==================== FILE PROVIDER (for Camera/Gallery) ==================== -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

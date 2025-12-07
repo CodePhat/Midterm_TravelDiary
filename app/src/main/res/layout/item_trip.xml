@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_card_elevated"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/card_light"
+    app:strokeWidth="0dp"
+    app:rippleColor="@color/divider_light">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Trip Image with Gradient Overlay -->
+        <FrameLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/tripImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Trip Image"/>
+
+            <!-- Gradient Overlay -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bg_gradient_overlay"/>
+
+            <!-- Trip Title on Image -->
+            <TextView
+                android:id="@+id/tripTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Destination"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <!-- Edit Photo Button -->
+            <ImageButton
+                android:id="@+id/btnEditPhoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="62dp"
+                android:background="@drawable/bg_button_circle_dark"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="@color/white"
+                android:contentDescription="Edit Photo"
+                android:padding="9dp"
+                android:scaleType="centerInside"
+                android:elevation="6dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- Favorite Heart Icon -->
+            <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="12dp"
+                android:background="@drawable/bg_button_circle_dark"
+                android:src="@drawable/ic_favorite_outline"
+                app:tint="@color/white"
+                android:contentDescription="Favorite"
+                android:padding="9dp"
+                android:scaleType="centerInside"
+                android:elevation="4dp"/>
+
+            <!-- Map Location Button -->
+            <ImageButton
+                android:id="@+id/btnMapLocation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_map_button"
+                android:src="@drawable/ic_map_small"
+                app:tint="@color/white"
+                android:contentDescription="View on Map"
+                android:padding="9dp"
+                android:scaleType="centerInside"
+                android:elevation="4dp"
+                android:visibility="gone"/>
+
+        </FrameLayout>
+
+        <!-- Trip Details Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/imageContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Date Range with Icon -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="@color/text_secondary_light"
+                    android:contentDescription="Date"/>
+
+                <TextView
+                    android:id="@+id/tripDates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jan 1 - Jan 10"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary_light"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
+
+
+            <!-- Rating Stars (Optional) -->
+            <LinearLayout
+                android:id="@+id/ratingLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_star"
+                    app:tint="@color/rating_star"
+                    android:contentDescription="Rating"/>
+
+                <TextView
+                    android:id="@+id/tripRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.5"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary_light"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

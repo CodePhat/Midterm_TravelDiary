@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Scrollable Stripe Background (behind all UI, scrolls with content) -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stripe"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:alpha="0.15"
+            android:contentDescription="Stripe Background" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header Section with Greeting -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradient_header"
+            android:padding="24dp">
+
+            <!-- Floating Animated Icons -->
+            <ImageView
+                android:id="@+id/floatingIcon1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/img_1"
+                android:alpha="0.3"
+                android:contentDescription="Floating decoration"
+                app:tint="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"/>
+
+            <ImageView
+                android:id="@+id/floatingIcon2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/img_2"
+                android:alpha="0.25"
+                android:contentDescription="Floating decoration"
+                app:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Profile Avatar -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileAvatar"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/img"
+                android:scaleType="centerCrop"
+                android:contentDescription="Profile Picture"
+                app:shapeAppearanceOverlay="@style/CircleImageView"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <!-- Greeting Text -->
+            <LinearLayout
+                android:id="@+id/greetingLayout"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="@id/profileAvatar"
+                app:layout_constraintBottom_toBottomOf="@id/profileAvatar"
+                app:layout_constraintStart_toEndOf="@id/profileAvatar"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/welcomeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hi Traveler,"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ready to Travel?"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:alpha="0.9"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Search Bar -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="-28dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/card_light">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/bg_search_bar">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="Search"
+                    app:tint="@color/text_tertiary_light"/>
+
+                <EditText
+                    android:id="@+id/searchBar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="@string/dashboard_search_hint"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary_light"
+                    android:textColorHint="@color/text_tertiary_light"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:inputType="text"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Category Chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:scrollbars="none"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/categoryChipsGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:chipSpacingHorizontal="8dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBeach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beach"
+                    android:textColor="@color/chip_beach"
+                    app:chipIcon="@drawable/ic_beach"
+                    app:chipIconTint="@color/chip_beach"
+                    app:chipBackgroundColor="@color/chip_beach_bg"
+                    app:chipStrokeWidth="0dp"
+                    android:background="@drawable/bg_chip_beach"
+                    app:chipCornerRadius="20dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMountain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mountain"
+                    android:textColor="@color/chip_mountain"
+                    app:chipIcon="@drawable/ic_mountain"
+                    app:chipIconTint="@color/chip_mountain"
+                    app:chipBackgroundColor="@color/chip_mountain_bg"
+                    app:chipStrokeWidth="0dp"
+                    android:background="@drawable/bg_chip_mountain"
+                    app:chipCornerRadius="20dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCamping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Camping"
+                    android:textColor="@color/chip_camping"
+                    app:chipIcon="@drawable/ic_camping"
+                    app:chipIconTint="@color/chip_camping"
+                    app:chipBackgroundColor="@color/chip_camping_bg"
+                    app:chipStrokeWidth="0dp"
+                    android:background="@drawable/bg_chip_camping"
+                    app:chipCornerRadius="20dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:textColor="@color/chip_city"
+                    app:chipIcon="@drawable/ic_city"
+                    app:chipIconTint="@color/chip_city"
+                    app:chipBackgroundColor="@color/chip_city_bg"
+                    app:chipStrokeWidth="0dp"
+                    android:background="@drawable/bg_chip_city"
+                    app:chipCornerRadius="20dp"/>
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <!-- Statistics Row -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingHorizontal="16dp"
+            android:weightSum="3"
+            android:baselineAligned="false">
+
+            <!-- Total Trips Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_card_elevated"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/card_light">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/totalTripsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary_blue"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stats_trips"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Total Spent Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_card_elevated"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/card_light">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/totalSpentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/accent_orange"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stats_spent"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Average Per Trip Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_card_elevated"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/card_light">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/avgPerTripText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/accent_green"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stats_avg_per_trip"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary_light"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Expense Chart Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_card_elevated"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/card_light">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <TextView
+                    android:text="@string/section_expense_breakdown"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- My Trips Section Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/section_recent_trips"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary_light"/>
+
+            <TextView
+                android:id="@+id/seeAllTrips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_see_all"
+                android:textSize="14sp"
+                android:textColor="@color/primary_blue"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- Trips Grid -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recentTripsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:paddingHorizontal="16dp"
+            android:clipToPadding="false"/>
+
+        <!-- No Trips Message -->
+        <LinearLayout
+            android:id="@+id/noRecentTripsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_empty_state"
+                android:alpha="0.5"
+                android:contentDescription="No trips"/>
+
+            <TextView
+                android:id="@+id/noRecentTripsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_no_recent_trips"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_secondary_light"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/noRecentTripsSubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_no_recent_trips_sub"
+                android:textColor="@color/text_tertiary_light"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Bottom Spacing -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+
+    </LinearLayout>
+
+    </FrameLayout>
+
+</ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
